@@ -7,7 +7,14 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css,md}\"",
+    "format:write": "prettier --write \"src/**/*.{ts,tsx,css,md}\"",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "check": "npm run lint && npm run format:check && npm run typecheck && npm run test",
     "preview": "vite preview"
+
   },
   "dependencies": {
     "react": "^19.2.8",

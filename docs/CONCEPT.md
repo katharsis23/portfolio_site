@@ -252,7 +252,6 @@ The accessible information is the track metadata and controls, not the visualiza
 Optional:
 
 - GitHub;
-- Last.fm.
 
 Rules:
 
