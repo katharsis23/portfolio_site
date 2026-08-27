@@ -6,7 +6,7 @@ import { usePerformance } from '../system/performance';
 export type ActionHandlers = Partial<Record<keyof typeof KEYMAP, () => void>>;
 
 export const useKeyboardShortcut = (handlers: ActionHandlers) => {
-  const { isAnimationOn } = usePerformance(); 
+  const { isAnimationOn } = usePerformance();
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

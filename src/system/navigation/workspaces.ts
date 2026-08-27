@@ -6,7 +6,8 @@
  * converge on the single `navigate` operation in navigation.tsx.
  */
 
-export type WorkspaceId = 'about' | 'experience' | 'skills' | 'projects' | 'education' | 'contact';
+export type WorkspaceId =
+  'about' | 'experience' | 'skills' | 'projects' | 'education' | 'contact';
 
 export interface WorkspaceDefinition {
   /** Canonical id, used in URLs, keyboard, terminal and navigation. */
@@ -27,11 +28,11 @@ export const WORKSPACES: readonly WorkspaceDefinition[] = [
 ] as const;
 
 const byId = new Map<WorkspaceId, WorkspaceDefinition>(
-  WORKSPACES.map((w) => [w.id, w]),
+  WORKSPACES.map((w) => [w.id, w])
 );
 
 const byIndex = new Map<number, WorkspaceDefinition>(
-  WORKSPACES.map((w) => [w.index, w]),
+  WORKSPACES.map((w) => [w.index, w])
 );
 
 /** Resolve a workspace by id, falling back to the About workspace. */

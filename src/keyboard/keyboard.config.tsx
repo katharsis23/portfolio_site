@@ -1,7 +1,7 @@
 import { type ShortcutDefinition } from './keyboard.types';
 
 export const KEYMAP: Record<string, ShortcutDefinition> = {
-// --- Navigation ---
+  // --- Navigation ---
   NAV_ABOUT: {
     id: 'NAV_ABOUT',
     keys: ['1'],
@@ -42,7 +42,6 @@ export const KEYMAP: Record<string, ShortcutDefinition> = {
     keys: ['ArrowLeft'],
     description: 'Previous Workspace',
   },
-
 
   // --- Utillities ---
   TOGGLE_TERMINAL: {

@@ -82,7 +82,7 @@ export function LazyWhenVisible({
       (entries) => {
         setVisible(entries.some((entry) => entry.isIntersecting));
       },
-      { rootMargin },
+      { rootMargin }
     );
     observer.observe(node);
     return () => observer.disconnect();

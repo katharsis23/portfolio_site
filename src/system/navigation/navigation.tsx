@@ -32,7 +32,9 @@ export interface NavigationController {
   previous(): void;
 }
 
-const NavigationContext = createContext<NavigationController | undefined>(undefined);
+const NavigationContext = createContext<NavigationController | undefined>(
+  undefined
+);
 
 function readInitial(): WorkspaceDefinition {
   if (typeof window === 'undefined') {
@@ -73,7 +75,7 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
     <NavigationContext.Provider
       value={useMemo(
         () => ({ current, navigate, navigateByIndex, next, previous }),
-        [current, navigate, navigateByIndex, next, previous],
+        [current, navigate, navigateByIndex, next, previous]
       )}
     >
       {children}
