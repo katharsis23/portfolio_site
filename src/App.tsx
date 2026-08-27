@@ -1,13 +1,11 @@
-
-import './App.css'
-
+import './App.css';
+import './ui/workspace.css';
+import './ui/waybar.css';
+import './ui/widgets.css';
+import './ui/shell.css';
+import { AppShell } from './ui';
 function App() {
-
-  return (
-    <>
-    <h1>Welcome to React</h1>
-    </>
-  )
+  return <AppShell />;
 }
 
-export default App
+export default App;
