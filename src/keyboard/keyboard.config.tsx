@@ -1,7 +1,7 @@
 import { type ShortcutDefinition } from './keyboard.types';
 
 export const KEYMAP: Record<string, ShortcutDefinition> = {
-// --- Navigation ---
+  // --- Navigation ---
   NAV_ABOUT: {
     id: 'NAV_ABOUT',
     keys: ['1'],
@@ -19,12 +19,12 @@ export const KEYMAP: Record<string, ShortcutDefinition> = {
   },
   NAV_EDUCATION: {
     id: 'NAV_EDUCATION',
-    keys: ['4'],
+    keys: ['5'],
     description: 'Navigate to Education',
   },
   NAV_PROJECTS: {
     id: 'NAV_PROJECTS',
-    keys: ['5'],
+    keys: ['4'],
     description: 'Navigate to Projects',
   },
   NAV_CONTACT: {
@@ -43,21 +43,20 @@ export const KEYMAP: Record<string, ShortcutDefinition> = {
     description: 'Previous Workspace',
   },
 
+  // // --- Utillities ---
+  // TOGGLE_TERMINAL: {
+  //   id: 'TOGGLE_TERMINAL',
+  //   keys: ['t'],
+  //   alt: true, // Alt + t
+  //   description: 'Toggles Terminal',
+  // },
 
-  // --- Utillities ---
-  TOGGLE_TERMINAL: {
-    id: 'TOGGLE_TERMINAL',
-    keys: ['t'],
-    alt: true, // Alt + t
-    description: 'Toggles Terminal',
-  },
-
-  TOGGLE_HELP: {
-    id: 'TOGGLE_HELP',
-    keys: ['/'],
-    alt: true, // Alt + h
-    description: 'Shortcut Help',
-  },
+  // TOGGLE_HELP: {
+  //   id: 'TOGGLE_HELP',
+  //   keys: ['/'],
+  //   alt: true, // Alt + h
+  //   description: 'Shortcut Help',
+  // },
   CLOSE_ALL: {
     id: 'CLOSE_ALL',
     keys: ['Escape'],
