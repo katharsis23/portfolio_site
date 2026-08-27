@@ -1,4 +1,5 @@
 import { useNavigation } from '../../system';
+import { CV_URL, GitHubWidget } from '../../integrations';
 
 /**
  * About — hero and philosophy. Pure semantic presentation.
@@ -43,10 +44,18 @@ export function About({
         >
           {t('hireMe')}
         </button>
-        <a className="ws-btn ws-btn--ghost" href="#/contact">
+        <a
+          className="ws-btn ws-btn--ghost"
+          href={CV_URL}
+          download="Danylo_CV.pdf"
+        >
           {t('downloadCv')}
         </a>
       </div>
+
+      {/* Live GitHub profile + contribution graph. Optional external source;
+          isolated so its loading/failure cannot affect the rest of the hero. */}
+      <GitHubWidget />
 
       <div className="ws-hero-cards">
         <article className="ws-card">

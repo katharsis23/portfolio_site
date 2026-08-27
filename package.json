@@ -18,7 +18,8 @@
   "dependencies": {
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "vitest": "^4.1.11"
+    "vitest": "^4.1.11",
+    "colorthief": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",

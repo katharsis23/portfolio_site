@@ -197,6 +197,11 @@ export const portfolioEng: PortfolioContent = {
       href: 'mailto:danylolv2006@gmail.com',
     },
     {
+      label: 'Linkedin',
+      value: 'www.linkedin.com/in/danylo-herchakivskyi-41555140a',
+      href: 'http://www.linkedin.com/in/danylo-herchakivskyi-41555140a'
+    },
+    {
       label: 'GitHub',
       value: 'github.com/katharsis23',
       href: 'https://github.com/katharsis23',

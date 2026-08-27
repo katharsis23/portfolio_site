@@ -43,20 +43,20 @@ export const KEYMAP: Record<string, ShortcutDefinition> = {
     description: 'Previous Workspace',
   },
 
-  // --- Utillities ---
-  TOGGLE_TERMINAL: {
-    id: 'TOGGLE_TERMINAL',
-    keys: ['t'],
-    alt: true, // Alt + t
-    description: 'Toggles Terminal',
-  },
+  // // --- Utillities ---
+  // TOGGLE_TERMINAL: {
+  //   id: 'TOGGLE_TERMINAL',
+  //   keys: ['t'],
+  //   alt: true, // Alt + t
+  //   description: 'Toggles Terminal',
+  // },
 
-  TOGGLE_HELP: {
-    id: 'TOGGLE_HELP',
-    keys: ['/'],
-    alt: true, // Alt + h
-    description: 'Shortcut Help',
-  },
+  // TOGGLE_HELP: {
+  //   id: 'TOGGLE_HELP',
+  //   keys: ['/'],
+  //   alt: true, // Alt + h
+  //   description: 'Shortcut Help',
+  // },
   CLOSE_ALL: {
     id: 'CLOSE_ALL',
     keys: ['Escape'],

@@ -248,6 +248,54 @@
   text-underline-offset: 0.2em;
 }
 
+/* GitHub integration */
+.ws-gh-chart-link {
+  display: inline-flex;
+}
+
+.ws-gh-chart {
+  width: 100%;
+  max-width: 34rem;
+  height: auto;
+  border: 1px solid var(--borders);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+
+.ws-gh-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ws-gh-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  border: 1px solid var(--borders);
+  background: var(--surface);
+  border-radius: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  min-width: 5.5rem;
+}
+
+.ws-gh-stat-value {
+  font-family: var(--mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.ws-gh-stat-label {
+  font-size: 0.8rem;
+  color: var(--secondary);
+}
+
+.ws-gh-retry {
+  margin-left: auto;
+}
+
 /* Visually hidden but present for assistive technology */
 .sr-workspace {
   position: absolute;
