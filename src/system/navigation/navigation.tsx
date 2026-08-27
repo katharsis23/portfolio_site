@@ -36,18 +36,22 @@ const NavigationContext = createContext<NavigationController | undefined>(
   undefined
 );
 
+export function workspaceFromHash(hash: string): WorkspaceId {
+  return resolveWorkspace(hash.replace(/^#\/?/, '').trim()).id;
+}
+
 function readInitial(): WorkspaceDefinition {
   if (typeof window === 'undefined') {
     return WORKSPACES[0];
   }
+  // The URL hash is the canonical source of truth for the current workspace.
+  if (window.location.hash) {
+    return resolveWorkspace(workspaceFromHash(window.location.hash));
+  }
+  // Fall back to a previously persisted workspace on first load.
   const saved = window.localStorage.getItem(STORAGE_KEY);
   if (saved) {
     return resolveWorkspace(saved);
-  }
-  // URL hash like #/projects
-  const hash = window.location.hash.replace(/^#\/?/, '');
-  if (hash) {
-    return resolveWorkspace(hash);
   }
   return WORKSPACES[0];
 }
@@ -56,20 +60,47 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
   const [current, setCurrent] = useState<WorkspaceDefinition>(readInitial);
 
   const navigate = useCallback((target: WorkspaceId) => {
-    setCurrent(resolveWorkspace(target));
+    const resolved = resolveWorkspace(target);
+    setCurrent(resolved);
+    syncHash(resolved.id);
   }, []);
 
   const navigateByIndex = useCallback((index: number) => {
-    setCurrent(resolveWorkspaceByIndex(index));
+    const resolved = resolveWorkspaceByIndex(index);
+    setCurrent(resolved);
+    syncHash(resolved.id);
   }, []);
 
   const next = useCallback(() => {
-    setCurrent((cur) => nextWorkspace(cur.id));
-  }, []);
+    const resolved = nextWorkspace(current.id);
+    setCurrent(resolved);
+    syncHash(resolved.id);
+  }, [current.id]);
 
   const previous = useCallback(() => {
-    setCurrent((cur) => previousWorkspace(cur.id));
+    const resolved = previousWorkspace(current.id);
+    setCurrent(resolved);
+    syncHash(resolved.id);
+  }, [current.id]);
+
+  // URL → state: react to browser Back/Forward, anchor clicks and manual hash
+  // edits. This is what makes plain `<a href="#/projects">` navigation work.
+  useEffect(() => {
+    const onHashChange = () => {
+      setCurrent(resolveWorkspace(workspaceFromHash(window.location.hash)));
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
+
+  // Persist the active workspace for a friendlier first-load experience.
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(STORAGE_KEY, current.id);
+    } catch {
+      /* best effort persistence */
+    }
+  }, [current.id]);
 
   return (
     <NavigationContext.Provider
@@ -79,29 +110,19 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
       )}
     >
       {children}
-      <NavigationSync activeId={current.id} />
     </NavigationContext.Provider>
   );
 }
 
-/**
- * Keeps the URL hash and a persisted value in sync with the active workspace.
- * Back/reload restores the workspace from the hash via readInitial.
- */
-function NavigationSync({ activeId }: { activeId: WorkspaceId }) {
-  useEffect(() => {
-    const hash = activeId === 'about' ? '#/' : `#/${activeId}`;
-    if (window.location.hash !== hash) {
-      window.history.replaceState(null, '', hash);
-    }
-    try {
-      window.localStorage.setItem(STORAGE_KEY, activeId);
-    } catch {
-      /* best effort persistence */
-    }
-  }, [activeId]);
-
-  return null;
+/** Update the URL hash without clobbering the scroll/anchor, idempotent. */
+function syncHash(id: WorkspaceId) {
+  if (typeof window === 'undefined') {
+    return;
+  }
+  const next = id === 'about' ? '#/' : `#/${id}`;
+  if (window.location.hash !== next) {
+    window.history.pushState(null, '', next);
+  }
 }
 
 export function useNavigation(): NavigationController {

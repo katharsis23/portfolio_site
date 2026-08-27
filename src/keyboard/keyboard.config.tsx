@@ -19,12 +19,12 @@ export const KEYMAP: Record<string, ShortcutDefinition> = {
   },
   NAV_EDUCATION: {
     id: 'NAV_EDUCATION',
-    keys: ['4'],
+    keys: ['5'],
     description: 'Navigate to Education',
   },
   NAV_PROJECTS: {
     id: 'NAV_PROJECTS',
-    keys: ['5'],
+    keys: ['4'],
     description: 'Navigate to Projects',
   },
   NAV_CONTACT: {

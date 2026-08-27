@@ -1,0 +1,271 @@
+/*
+ * Tiling shell layout (docs/general_theme_concept.md).
+ *
+ * Adds the Hyprland-style tiling grid on top of the "Plain View" base:
+ *   - a two-column grid: hero window (left) + sidebar (right)
+ *   - window chrome shared with widgets (title bar + window controls)
+ *   - a bottom status bar ("workspace X — active", "master*")
+ *   - hero actions (Hire Me / Download CV) and philosophy cards
+ *
+ * Colours come from the active theme tokens (`--primary`, `--surface`,
+ * `--onSurface`, `--secondary`, `--background`, `--borders`). Nothing is
+ * hardcoded here.
+ *
+ * Glassmorphism (backdrop blur) is applied ONLY when performance mode is on,
+ * via the `data-performance-mode="on"` attribute set by src/system/performance.
+ * In plain view / performance-off the shell degrades to solid surfaces.
+ */
+
+/* Two-column tiling grid */
+.app-content {
+  max-width: none;
+  width: 100%;
+}
+
+.shell-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(18rem, 3fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+/* ---- Hero window (left, ~65-70%) ---- */
+.hero-window {
+  border-radius: 0.9rem;
+}
+
+.hero-window-body {
+  padding: 1.5rem 1.75rem;
+  overflow-y: auto;
+  max-height: calc(100svh - 11rem);
+  scrollbar-width: thin;
+}
+
+/* Window control dots */
+.window-dots {
+  display: inline-flex;
+  gap: 0.35rem;
+}
+
+.window-dots i {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--secondary) 55%, transparent);
+}
+
+.window-dots i:nth-child(2) {
+  background: color-mix(in srgb, var(--primary) 55%, transparent);
+}
+
+/* ---- Sidebar (right, ~30-35%) ---- */
+.app-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: sticky;
+  top: 0;
+  max-height: calc(100svh - 6rem);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* ---- Bottom status bar ---- */
+.app-statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--borders);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  color: var(--secondary);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.app-statusbar-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.app-statusbar .master-branch {
+  color: var(--primary);
+}
+
+/* ---- Hero actions (Hire Me / Download CV) ---- */
+.ws-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.25rem 0 0;
+}
+
+.ws-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.1rem;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.ws-btn--primary {
+  background: var(--primary);
+  color: var(--background);
+  border: 1px solid var(--primary);
+}
+
+.ws-btn--primary:hover {
+  filter: brightness(1.08);
+}
+
+.ws-btn--ghost {
+  background: transparent;
+  color: var(--onSurface);
+  border: 1px solid var(--borders);
+}
+
+.ws-btn--ghost:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* ---- Hero cards (The Philosophy / The Stack) ---- */
+.ws-hero-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.ws-card {
+  border: 1px solid var(--borders);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  padding: 1rem;
+}
+
+.ws-card-title {
+  color: var(--primary);
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+
+.ws-card-copy {
+  margin: 0;
+  color: var(--onSurface);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 860px) {
+  .ws-card-title {
+    color: var(--secondary);
+  }
+}
+
+/* ---- Performance metrics window ---- */
+.perf-body {
+  margin: 0;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.perf-card {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0.5rem 0.6rem;
+  border-radius: 0.5rem;
+  background: var(--background);
+  border: 1px solid var(--borders);
+}
+
+.perf-label {
+  margin: 0;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--secondary);
+}
+
+.perf-value {
+  margin: 0;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.perf-status {
+  display: inline-flex;
+  align-items: center;
+}
+
+.perf-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--borders);
+}
+
+.perf-dot.is-on {
+  background: var(--primary);
+}
+
+/* Typography helper: monospace used across bars and terminal chrome */
+.mono {
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+/* ---- Glassmorphism (Performance ON only) ---- */
+html[data-performance-mode='on'] .hero-window,
+html[data-performance-mode='on'] .app-sidebar .widget,
+html[data-performance-mode='on'] .app-sidebar .window,
+html[data-performance-mode='on'] .app-statusbar,
+html[data-performance-mode='on'] .ws-card {
+  backdrop-filter: blur(18px) saturate(1.5);
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+}
+
+/* Respect reduced motion: no blur transitions */
+@media (prefers-reduced-motion: reduce) {
+  .ws-btn {
+    transition: none;
+  }
+}
+
+/* ---- Responsive: collapse grid to single column ---- */
+@media (max-width: 860px) {
+  .shell-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .app-sidebar {
+    position: static;
+    order: 2;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .hero-window-body {
+    max-height: none;
+  }
+}

@@ -12,7 +12,8 @@ export function Education({ items }: { items: EducationItem[] }) {
           <article key={item.degree} className="ws-edu-card">
             <h2 className="ws-h2">{item.degree}</h2>
             <p className="ws-meta">
-              <span className="ws-strong">{item.institution}</span> · {item.period}
+              <span className="ws-strong">{item.institution}</span> ·{' '}
+              {item.period}
             </p>
             <p className="ws-paragraph">{item.focus}</p>
           </article>

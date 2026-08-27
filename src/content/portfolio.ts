@@ -68,12 +68,7 @@ export const portfolioEng: PortfolioContent = {
     },
     {
       title: 'Databases & Caching',
-      items: [
-        'PostgreSQL',
-        'MySQL',
-        'Redis',
-        'Database Optimization',
-      ],
+      items: ['PostgreSQL', 'MySQL', 'Redis', 'Database Optimization'],
     },
     {
       title: 'DevOps & Infrastructure',
@@ -125,28 +120,56 @@ export const portfolioEng: PortfolioContent = {
     {
       name: 'Padel Sports Platform',
       tagline: 'Commercial Project',
-      stack: ['Python', 'Django DRF', 'FastAPI', 'PostgreSQL', 'Pytest', 'Docker'],
+      stack: [
+        'Python',
+        'Django DRF',
+        'FastAPI',
+        'PostgreSQL',
+        'Pytest',
+        'Docker',
+      ],
       description:
         'Refactored core legacy architectural components, optimizing DB queries and API response times for production workloads. Implemented new backend modules for real-time sports court booking and automated player scheduling.',
     },
     {
       name: 'LeoRent',
       tagline: 'AI-Powered Real Estate Platform',
-      stack: ['Python', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'AI Integration', 'REST API', 'Docker'],
+      stack: [
+        'Python',
+        'FastAPI',
+        'PostgreSQL',
+        'SQLAlchemy',
+        'AI Integration',
+        'REST API',
+        'Docker',
+      ],
       description:
         'Engineered a backend ecosystem for a property rental platform featuring an integrated AI assistant to automate property search and listing matches. Built scalable RESTful API endpoints for managing listings, user inquiries, and dynamic filtering.',
     },
     {
       name: 'Zettelkasten Note & Task Ecosystem',
       tagline: 'Cross-platform, local-first note-taking engine',
-      stack: ['Python', 'FastAPI', 'SQLite/PostgreSQL', 'Flutter', 'Dart', 'REST API'],
+      stack: [
+        'Python',
+        'FastAPI',
+        'SQLite/PostgreSQL',
+        'Flutter',
+        'Dart',
+        'REST API',
+      ],
       description:
         'Designed a cross-platform, local-first note-taking and task management engine following the Zettelkasten methodology. Implemented data synchronization algorithms for seamless cross-device state management and offline-first persistence with cloud backup.',
     },
     {
       name: 'Notes AI Manager',
       tagline: 'Local LLM Integration',
-      stack: ['Python', 'Ollama API', 'Local LLMs', 'Markdown Parser', 'Graph Generation'],
+      stack: [
+        'Python',
+        'Ollama API',
+        'Local LLMs',
+        'Markdown Parser',
+        'Graph Generation',
+      ],
       description:
         'Built an automated note processing system leveraging local Ollama LLM models to parse, summarize, and auto-generate structured .md study guides. Implemented a dynamic knowledge-graph generator for interactive visual mind-maps across notes.',
     },
@@ -168,8 +191,16 @@ export const portfolioEng: PortfolioContent = {
     },
   ],
   contact: [
-    { label: 'Email', value: 'danylolv2006@gmail.com', href: 'mailto:danylolv2006@gmail.com' },
-    { label: 'GitHub', value: 'github.com/katharsis23', href: 'https://github.com/katharsis23' },
+    {
+      label: 'Email',
+      value: 'danylolv2006@gmail.com',
+      href: 'mailto:danylolv2006@gmail.com',
+    },
+    {
+      label: 'GitHub',
+      value: 'github.com/katharsis23',
+      href: 'https://github.com/katharsis23',
+    },
   ],
 };
 

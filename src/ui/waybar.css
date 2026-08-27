@@ -1,0 +1,104 @@
+/*
+ * Waybar — the top workspace navigation bar.
+ *
+ * Styled as a restrained floating bar (Hyprland/Waybar vocabulary): workspace
+ * pills on the left, utility buttons on the right. Colours come from the
+ * active theme's CSS tokens; motion respects prefers-reduced-motion and the
+ * `--performance-mode` flag from src/system.
+ *
+ * On small/touch screens the waybar drops to the bottom as a dock.
+ */
+
+.waybar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--borders);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  backdrop-filter: saturate(1.4) blur(12px);
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.waybar-workspaces,
+.waybar-utils {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.waybar-pill {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.75rem;
+  height: 1.75rem;
+  padding: 0 0.4rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--borders);
+  background: transparent;
+  color: var(--onSurface);
+  font-size: 0.75rem;
+  text-decoration: none;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.waybar-pill:hover {
+  border-color: var(--primary);
+}
+
+.waybar-pill--active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--background);
+}
+
+.waybar-util {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--borders);
+  background: transparent;
+  color: var(--onSurface);
+  font-size: 0.8rem;
+  font-family: ui-monospace, Consolas, monospace;
+  cursor: pointer;
+}
+
+.waybar-util:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.waybar-util-label {
+  font-size: 0.7rem;
+}
+
+/* Desktop: bottom → can stay floating at top. Mobile → bottom dock. */
+@media (max-width: 640px) {
+  .waybar {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    inset-inline: 0;
+    margin: 0.5rem;
+    border-radius: 0.75rem;
+  }
+
+  .waybar-util-label {
+    display: none;
+  }
+
+  .app-shell {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+  }
+}

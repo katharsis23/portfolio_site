@@ -43,7 +43,7 @@ export const PerformanceProvider: React.FC<PerformanceProviderProps> = ({
 
   const value = {
     mode,
-    setMode,
+    setMode: setPerformanceMode,
     isAnimationOn: () => mode,
     isHeavyVisualsOn: () => mode,
   };

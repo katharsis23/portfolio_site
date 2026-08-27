@@ -1,13 +1,9 @@
 import { useEffect } from 'react';
 import { KEYMAP } from './keyboard.config';
-import { usePerformance } from '../system/performance';
-
 // Binding KEYMAP to handlers
 export type ActionHandlers = Partial<Record<keyof typeof KEYMAP, () => void>>;
 
 export const useKeyboardShortcut = (handlers: ActionHandlers) => {
-  const { isAnimationOn } = usePerformance();
-
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       // We DO NOT track inside fields wehere user is typing,
