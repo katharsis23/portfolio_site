@@ -1,0 +1,23 @@
+# Netlify deployment configuration.
+#
+# Build the Vite app to `dist/` and publish that directory. Without this file
+# Netlify may fall back to serving the raw repo source (Vite-dev style), which
+# breaks ES modules — the browser rejects `/src/main.tsx` for the wrong MIME
+# type. The publish command mirrors `npm run build` in package.json.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Node version used at build time (matches `engines`/CI). Netlify defaults are
+# often older; pin a recent LTS to match the local toolchain.
+[build.environment]
+  NODE_VERSION = "24"
+
+# SPA fallback: the shell uses hash-based routes (#/projects, …) so deep links
+# already resolve client-side, but redirecting any unknown path to index.html
+# keeps paths clean and future-proofs non-hash navigation.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
