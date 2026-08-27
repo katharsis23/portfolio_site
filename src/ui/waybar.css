@@ -1,12 +1,16 @@
 /*
- * Waybar — the top workspace navigation bar.
+ * Waybar — the top workspace navigation bar (desktop).
  *
  * Styled as a restrained floating bar (Hyprland/Waybar vocabulary): workspace
  * pills on the left, utility buttons on the right. Colours come from the
  * active theme's CSS tokens; motion respects prefers-reduced-motion and the
  * `--performance-mode` flag from src/system.
  *
- * On small/touch screens the waybar drops to the bottom as a dock.
+ * On small/touch screens per docs/CONCEPT.md §5 the waybar becomes a BOTTOM
+ * DOCK: a fixed, thumb-friendly bar with the same conceptual vocabulary.
+ * The dock floats at the bottom edge and `.app-shell` padding compensates so
+ * it never hides scrollable content (docs/AGENTS.md §2.5 — scrolling stays
+ * normal and is never sacrificed).
  */
 
 .waybar {
@@ -146,13 +150,17 @@ html[data-performance-mode='on'] .waybar {
   }
 }
 
-/* Desktop: bottom → can stay floating at top. Mobile → bottom dock. */
+/* Mobile: the waybar becomes a BOTTOM DOCK (docs/CONCEPT.md §5) — fixed at
+   the viewport bottom, thumb-reachable, with safe-area handling.
+   `.app-shell` gets matching bottom padding so the dock never overlaps the
+   scrollable content underneath (docs/AGENTS.md §2.5 — scrolling stays normal). */
 @media (max-width: 640px) {
   .waybar {
     position: fixed;
     top: auto;
     bottom: 0;
     inset-inline: 0;
+    z-index: 40;
     margin: 0.5rem;
     border-radius: 0.75rem;
     gap: 0.5rem;
@@ -167,17 +175,19 @@ html[data-performance-mode='on'] .waybar {
   /* Slightly tighter pills so seven of them + the clock fit one row on the
      narrowest screens without the clock spilling out by a pixel. */
   .waybar-pill {
-    min-width: 1.5rem;
-    height: 1.5rem;
-    padding: 0 0.3rem;
-    font-size: 0.7rem;
+    min-width: 1.6rem;
+    height: 1.7rem;
+    padding: 0 0.35rem;
+    font-size: 0.72rem;
   }
 
   .waybar-util-label {
     display: none;
   }
 
+  /* Reserve space for the fixed bottom dock so content scrolls fully above
+     it instead of being hidden beneath it. */
   .app-shell {
-    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
   }
 }
