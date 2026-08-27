@@ -1,0 +1,110 @@
+Про мене (About)
+
+Результативний Python Backend Розробник із міцною теоретичною базою в Computer Science та практичним досвідом побудови масштабованих, готових до продакшену систем. Спеціалізуюся на розробці високопродуктивних і безпечних RESTful API на FastAPI та Django (DRF), оптимізації реляційних баз даних (PostgreSQL, MySQL) та контейнеризації додатків за допомогою Docker.
+
+Окрім розробки бекенд-архітектури, маю практичний досвід кросплатформеної мобільної розробки на Flutter (Dart), що дозволяє мені безшовно інтегрувати бекенд-сервіси з клієнтською частиною.
+
+Навички (Skills)
+
+    Backend Development: Python, FastAPI, Django, Django REST Framework, SQLAlchemy, Pydantic, Uvicorn, REST API Design
+
+    Databases & Caching: PostgreSQL, MySQL, Redis, Database Optimization
+
+    DevOps & Infrastructure: Docker, Git, GitHub Actions, Linux (Bash), CI/CD basics
+
+    Mobile & Frontend: Dart, Flutter, JavaScript, Cross-Platform UI Development
+
+    Testing & Quality: Pytest, Unit Testing, Legacy Code Refactoring, Code Coverage
+
+Досвід роботи (Experience)
+
+Backend Developer | Appexoft
+
+Грудень 2025 – Лютий 2026
+
+    Розробляв продакшен-фічі та рефакторив легасі-код бекенду для комерційної спортивної платформи (Padel).
+
+    Значно підвищив надійність системи завдяки збільшенню покриття коду юніт- та інтеграційними тестами за допомогою Pytest.
+
+    Оптимізував запити до бази даних та час відповіді API, забезпечивши стабільну роботу під продакшен-навантаженням.
+
+Flutter / Frontend Developer | Molofaktura Startup
+
+Липень 2024 – Вересень 2024
+
+    Брав участь у розробці кросплатформеного UI для інтерактивної освітньої платформи "School42".
+
+    Допоміг проєкту залучити фінансування завдяки перемозі в грантовому конкурсі Molofaktura 2024.
+
+    Інтегрував мобільний інтерфейс із бекенд REST API.
+
+Проєкти (Projects)
+
+Padel Sports Platform (Комперційний проєкт)
+
+    Стек: Python, Django DRF, FastAPI, PostgreSQL, Pytest, Docker
+
+    Провів рефакторинг ключових легасі-компонентів, оптимізував DB-запити та швидкість роботи API для продакшену.
+
+    Реалізував нові бекенд-модулі для бронювання кортів у реальному часі та автоматичного розкладу ігор.
+
+    Покращив стабільність кодової бази шляхом впровадження тестового покриття на Pytest.
+
+LeoRent — AI-Платформа для оренди нерухомості
+
+    Бекенд репозиторій: https://github.com/katharsis23/LeoRent_Backend
+
+    Демо: https://leorent.netlify.app/
+
+    Стек: Python, FastAPI, PostgreSQL, SQLAlchemy, AI Integration, REST API, Docker
+
+    Спроектував бекенд-екосистему для платформи оренди нерухомості з інтегрованим AI-асистентом для автоматизації пошуку та підбору житла.
+
+    Розробив масштабовані RESTful API ендпоінти для управління оголошеннями, запитами користувачів та динамічної фільтрації.
+
+Zettelkasten Note & Task Ecosystem
+
+    Бекенд репозиторій: https://github.com/katharsis23/fastapi_todo_app
+
+    Фронтенд репозиторій: https://github.com/katharsis23/zettelkasten_frontend
+
+    Стек: Python, FastAPI, SQLite/PostgreSQL, Flutter, Dart, REST API
+
+    Розробив кросплатформений застібковий рушій для нотаток і задач за методом Zettelkasten за принципом "local-first, cloud-second".
+
+    Реалізував алгоритми синхронізації даних для забезпечення роботи між пристроями та збереження стану офлайн із хмарним бекапом.
+
+Notes AI Manager (Інтеграція локальних LLM)
+
+    Репозиторій: https://github.com/katharsis23/Notes_AI_manager
+
+    Стек: Python, Ollama API, Local LLMs, Markdown Parser, Graph Generation
+
+    Створив систему автоматизованої обробки нотаток на базі локальних нейромереж (Ollama), яка аналізує та генерує структуровані .md конспекти.
+
+    Реалізував генератор графа знань, який на основі тегів та семантичного контексту будує інтерактивні візуальні mind-maps між нотатками.
+
+System & Environment Configs (sddm_dots)
+
+    Репозиторій: https://github.com/katharsis23/sddm_dots
+
+    Стек: Linux, QML, Shell Scripting, Custom Unix Configuration
+
+    Розробив кастомну анімовану тему та конфігурацію dotfiles для дисплейного менеджера SDDM.
+
+    Проєкт демонструє впевнене володіння Linux CLI, системним кастомізуванням та кастомними скриптами.
+
+Освіта (Education)
+
+Бакалавр: Комп'ютерні науки (Спеціальність 122)
+
+Національний університет «Львівська політехніка» | Вересень 2023 – дотепер
+
+    Глибокий фокус на інженерії програмного забезпечення, структурах даних, алгоритмах, архітектурі систем та проектуванні баз даних.
+
+Контакти (Contact)
+
+    Email: danylolv2006
+
+    GitHub: https://github.com/katharsis23/
+

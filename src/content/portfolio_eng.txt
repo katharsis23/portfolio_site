@@ -1,0 +1,107 @@
+# TODO LINKS IN FUTURE
+About
+
+Results-oriented Python Backend Developer with a strong foundation in Computer Science and hands-on experience building scalable, production-ready systems. Specialized in crafting high-performance, secure RESTful APIs with FastAPI and Django (DRF), designing optimized relational database schemas (PostgreSQL, MySQL), and containerizing applications with Docker.
+
+Beyond core backend architecture, I possess cross-platform mobile development skills in Flutter (Dart), enabling me to bridge the gap between backend services and client-side integration seamlessly.
+
+Skills
+
+    Backend Development: Python, FastAPI, Django, Django REST Framework, SQLAlchemy, Pydantic, Uvicorn, REST API Design
+
+    Databases & Caching: PostgreSQL, MySQL, Redis, Database Optimization
+
+    DevOps & Infrastructure: Docker, Git, GitHub Actions, Linux (Bash), CI/CD basics
+
+    Mobile & Frontend: Dart, Flutter, JavaScript, Cross-Platform UI Development
+
+    Testing & Quality: Pytest, Unit Testing, Legacy Code Refactoring, Code Coverage
+
+Experience
+
+Backend Developer | Appexoft
+
+December 2025 – February 2026
+
+    Engineered production features and refactored core backend legacy code for a commercial Padel sports platform.
+
+    Significantly improved system reliability by increasing unit and integration test coverage with Pytest.
+
+    Optimized database queries and API response times, ensuring smooth execution across production workloads.
+
+Flutter / Frontend Developer | Molofaktura Startup
+
+July 2024 – September 2024
+
+    Co-developed the interactive cross-platform UI for "School42," a gamified educational platform.
+
+    Successfully secured funding for the product after winning the prestigious Molofaktura 2024 startup grant.
+
+    Integrated mobile frontend interfaces with backend REST APIs.
+
+Projects
+
+Padel Sports Platform (Commercial Project)
+
+    Tech Stack: Python, Django DRF, FastAPI, PostgreSQL, Pytest, Docker
+
+    Refactored core legacy architectural components, optimizing DB queries and API response times for production workloads.
+
+    Implemented new backend modules for real-time sports court booking and automated player scheduling.
+
+    Increased codebase reliability by introducing comprehensive unit and integration test suites with Pytest.
+
+LeoRent — AI-Powered Real Estate Platform
+
+    Links: Backend Repository | Live Demo
+
+    Tech Stack: Python, FastAPI, PostgreSQL, SQLAlchemy, AI Integration, REST API, Docker
+
+    Engineered a backend ecosystem for a property rental platform featuring an integrated AI assistant to automate property search and listing matches.
+
+    Built scalable RESTful API endpoints for managing listings, user inquiries, and dynamic filtering.
+
+Zettelkasten Note & Task Ecosystem
+
+    Links: Backend Repository | Frontend Repository
+
+    Tech Stack: Python, FastAPI, SQLite/PostgreSQL, Flutter, Dart, REST API
+
+    Designed a cross-platform, local-first note-taking and task management engine following the Zettelkasten methodology.
+
+    Implemented data synchronization algorithms to enable seamless cross-device state management and offline-first persistence with cloud backup capabilities.
+
+Notes AI Manager (Local LLM Integration)
+
+    Link: GitHub Repository
+
+    Tech Stack: Python, Ollama API, Local LLMs, Markdown Parser, Graph Generation
+
+    Built an automated note processing system leveraging local Ollama LLM models to parse, summarize, and auto-generate structured .md study guides.
+
+    Implemented a dynamic knowledge-graph generator that analyzes semantic tags and context to compose interactive visual mind-maps across existing notes.
+
+System & Environment Configs (sddm_dots)
+
+    Link: GitHub Repository
+
+    Tech Stack: Linux, QML, Shell Scripting, Custom Unix Configuration
+
+    Designed a custom animated theme and dotfiles configuration for the SDDM (Simple Desktop Display Manager).
+
+    Demonstrates advanced Linux CLI fluency, system-level customization, and UI scripting skills.
+
+Education
+
+Bachelor of Science in Computer Science (Specialty 122)
+
+Lviv Polytechnic National University | September 2023 – Present
+
+    Deep focus on Software Engineering, Data Structures, Systems Architecture, and Database Design.
+
+Contact
+
+    Email: danylolv2006@gmail.com
+
+    GitHub: github.com/katharsis23
+

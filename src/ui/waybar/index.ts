@@ -1,0 +1,1 @@
+export { Waybar } from './Waybar';
