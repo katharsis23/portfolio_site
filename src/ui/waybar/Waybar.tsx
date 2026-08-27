@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useNavigation, WORKSPACES } from '../../system';
+import { useNavigation, WORKSPACES, useLanguage } from '../../system';
 
 /**
  * Waybar — the workspace + status bar (top floating bar on desktop).
  *
  * Workspace pills mirror Hyprland's workspace switching. Each pill is a real
- * link so it works via mouse, keyboard, URL hash and screen readers.
+ * link so it works via mouse, keyboard, URL hash and screen readers. Pills are
+ * labelled with real workspace names, localised through `tWorkspace`.
  *
  * The right side reports a minimal clock. Per the design simplification the
  * CPU read-out and the Terminal / Settings / Shortcuts utility icons were
@@ -14,6 +15,7 @@ import { useNavigation, WORKSPACES } from '../../system';
  */
 export function Waybar() {
   const { current } = useNavigation();
+  const { tWorkspace } = useLanguage();
   const [time, setTime] = useState(() => formatTime(new Date()));
 
   useEffect(() => {
@@ -35,9 +37,9 @@ export function Waybar() {
                 ? 'waybar-pill waybar-pill--active'
                 : 'waybar-pill'
             }
-            aria-label={`${ws.label} workspace`}
+            aria-label={tWorkspace(ws.id)}
             aria-current={current.id === ws.id ? 'page' : undefined}
-            title={ws.label}
+            title={tWorkspace(ws.id)}
           >
             {ws.index}
           </a>
@@ -60,3 +62,4 @@ export function Waybar() {
 function formatTime(date: Date): string {
   return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 }
+

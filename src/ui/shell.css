@@ -303,6 +303,47 @@
   font-family: var(--mono);
 }
 
+/* ---- Decorative CAVA background ---- */
+/*
+ * The CAVA canvas is a fixed, full-viewport surface layered BEHIND the main
+ * content (and above the wallpaper) so its animated bars read as decoration.
+ * It is pointer-transparent so it never blocks interaction. It is mounted only
+ * when performance/optimization mode is OFF — i.e. heavy animations are being
+ * shown — and fades in while the radio player is actually playing
+ * (`data-active='on'`). The rAF loop itself is gated in Cava.tsx
+ * (heavy-animations mode && player playing), so this is purely presentational.
+ */
+.cava-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100svh;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+
+/* Bring the tiling content above the decorative canvas. */
+.app-shell > .app-content,
+.app-shell > .waybar,
+.app-shell > .app-statusbar,
+.app-shell > .widgets-layer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Only reveal the background bars when the feature is active. */
+.cava-canvas[data-active='on'] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cava-canvas {
+    opacity: 0 !important;
+  }
+}
+
 /* ---- Glassmorphism (Performance ON only) ---- */
 html[data-performance-mode='on'] .hero-window,
 html[data-performance-mode='on'] .hero-window .window-titlebar,

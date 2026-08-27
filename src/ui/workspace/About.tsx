@@ -3,15 +3,18 @@ import { useNavigation } from '../../system';
 /**
  * About — hero and philosophy. Pure semantic presentation.
  * Colours come from the active theme's CSS tokens; nothing is hardcoded here.
+ * The bilingual hero copy comes from the language context `t`.
  */
 export function About({
   name,
   role,
   about,
+  t,
 }: {
   name: string;
   role: string;
   about: string[];
+  t: (key: string) => string;
 }) {
   const { navigate } = useNavigation();
 
@@ -38,28 +41,21 @@ export function About({
           className="ws-btn ws-btn--primary"
           onClick={() => navigate('contact')}
         >
-          Hire Me
+          {t('hireMe')}
         </button>
         <a className="ws-btn ws-btn--ghost" href="#/contact">
-          Download CV
+          {t('downloadCv')}
         </a>
       </div>
 
       <div className="ws-hero-cards">
         <article className="ws-card">
-          <h3 className="ws-card-title">The Philosophy</h3>
-          <p className="ws-card-copy">
-            Minimalism is not the absence of features, but the presence of
-            focus. I build systems that feel like an extension of intent.
-          </p>
+          <h3 className="ws-card-title">{t('heroPhilosophyTitle')}</h3>
+          <p className="ws-card-copy">{t('heroPhilosophyCopy')}</p>
         </article>
         <article className="ws-card">
-          <h3 className="ws-card-title">The Stack</h3>
-          <p className="ws-card-copy">
-            Deeply rooted in Python, distributed services, and modern the web's
-            ability to deliver native-feel products with clean, measurable
-            performance.
-          </p>
+          <h3 className="ws-card-title">{t('heroStackTitle')}</h3>
+          <p className="ws-card-copy">{t('heroStackCopy')}</p>
         </article>
       </div>
     </section>

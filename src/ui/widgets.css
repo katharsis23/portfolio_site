@@ -227,6 +227,150 @@
   color: var(--onPrimary, var(--background));
 }
 
+/* Segmented control (language selector) */
+.setting-segmented {
+  display: inline-flex;
+  gap: 0.25rem;
+  background: var(--background);
+  border: 1px solid var(--borders);
+  border-radius: 0.6rem;
+  padding: 0.2rem;
+  width: max-content;
+}
+
+.segmented-btn {
+  padding: 0.3rem 0.75rem;
+  border: none;
+  border-radius: 0.45rem;
+  background: transparent;
+  color: var(--onSurface);
+  font-size: 0.78rem;
+  font-family: var(--mono);
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
+}
+
+.segmented-btn:hover {
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+}
+
+.segmented-btn.is-active {
+  background: var(--primary);
+  color: var(--onPrimary, var(--background));
+}
+
+/* --- Player (radio) --- */
+.player-widget {
+  min-width: 0;
+}
+
+.player-widget .window-titlebar .window-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.player-state {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+}
+
+.player-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.player-now {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.player-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--onSurface);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-suno {
+  font-size: 0.68rem;
+  color: var(--secondary);
+  opacity: 0.85;
+}
+
+.player-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.player-time {
+  font-size: 0.62rem;
+  color: var(--secondary);
+  min-width: 2.2rem;
+}
+
+.player-time--right {
+  text-align: right;
+}
+
+.player-progress {
+  flex: 1;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.player-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--borders);
+  border-radius: 999px;
+  background: var(--background);
+  color: var(--onSurface);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.player-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.player-btn--primary {
+  width: 2.6rem;
+  height: 2.6rem;
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--onPrimary, var(--background));
+  font-size: 1rem;
+}
+
+.player-btn--primary:hover {
+  filter: brightness(1.08);
+}
+
 /* --- Shortcuts --- */
 .shortcut-list {
   margin: 0;

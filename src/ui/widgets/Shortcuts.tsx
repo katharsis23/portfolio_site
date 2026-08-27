@@ -9,8 +9,9 @@ function formatKeys(shortcut: ShortcutDefinition): string {
  * Shortcuts — keyboard shortcut reference shown as a floating window.
  *
  * Pure presentational mapping of KEYMAP so power users can look up the keys.
+ * The window title is localised via the language context (`t`).
  */
-export function Shortcuts() {
+export function Shortcuts({ t }: { t?: (key: string) => string }) {
   return (
     <section
       className="widget window"
@@ -18,7 +19,9 @@ export function Shortcuts() {
       aria-label="Keyboard shortcuts"
     >
       <header className="window-titlebar">
-        <span className="window-title">shortcuts</span>
+        <span className="window-title">
+          {t ? t('shortcutsTitle') : 'shortcuts'}
+        </span>
       </header>
 
       <dl className="shortcut-list">

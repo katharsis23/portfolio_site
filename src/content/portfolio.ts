@@ -204,4 +204,133 @@ export const portfolioEng: PortfolioContent = {
   ],
 };
 
-export const portfolioUkr: PortfolioContent = portfolioEng;
+export const portfolioUkr: PortfolioContent = {
+  name: 'Данило (Katharsis)',
+  role: 'Python Backend Розробник',
+  about: [
+    'Результативний Python Backend Розробник із міцною теоретичною базою в Computer Science та практичним досвідом побудови масштабованих, готових до продакшену систем. Спеціалізуюся на розробці високопродуктивних і безпечних RESTful API на FastAPI та Django (DRF), оптимізації реляційних баз даних (PostgreSQL, MySQL) та контейнеризації додатків за допомогою Docker.',
+    'Окрім розробки бекенд-архітектури, маю практичний досвід кросплатформенної мобільної розробки на Flutter (Dart), що дозволяє мені безшовно інтегрувати бекенд-сервіси з клієнтською частиною.',
+  ],
+  skills: [
+    {
+      title: 'Backend Development',
+      items: [
+        'Python',
+        'FastAPI',
+        'Django',
+        'Django REST Framework',
+        'SQLAlchemy',
+        'Pydantic',
+        'Uvicorn',
+        'REST API Design',
+      ],
+    },
+    {
+      title: 'Databases & Caching',
+      items: ['PostgreSQL', 'MySQL', 'Redis', 'Database Optimization'],
+    },
+    {
+      title: 'DevOps & Infrastructure',
+      items: [
+        'Docker',
+        'Git',
+        'GitHub Actions',
+        'Linux (Bash)',
+        'CI/CD basics',
+      ],
+    },
+    {
+      title: 'Mobile & Frontend',
+      items: ['Dart', 'Flutter', 'JavaScript', 'Cross-Platform UI Development'],
+    },
+    {
+      title: 'Testing & Quality',
+      items: [
+        'Pytest',
+        'Unit Testing',
+        'Legacy Code Refactoring',
+        'Code Coverage',
+      ],
+    },
+  ],
+  experience: [
+    {
+      role: 'Backend Developer',
+      company: 'Appexoft',
+      period: 'Грудень 2025 – Лютий 2026',
+      bulletPoints: [
+        'Розробляв продакшен-фічі та рефакторив легасі-код бекенду для комерційної спортивної платформи (Padel).',
+        'Значно підвищив надійність системи завдяки збільшенню покриття коду юніт- та інтеграційними тестами за допомогою Pytest.',
+        'Оптимізував запити до бази даних та час відповіді API, забезпечивши стабільну роботу під продакшен-навантаженням.',
+      ],
+    },
+    {
+      role: 'Flutter / Frontend Developer',
+      company: 'Molofaktura Startup',
+      period: 'Липень 2024 – Вересень 2024',
+      bulletPoints: [
+        'Брав участь у розробці кросплатформеного UI для інтерактивної освітньої платформи "School42".',
+        'Допоміг проєкту залучити фінансування завдяки перемозі в грантовому конкурсі Molofaktura 2024.',
+        'Інтегрував мобільний інтерфейс із бекенд REST API.',
+      ],
+    },
+  ],
+  projects: [
+    {
+      name: 'Padel Sports Platform',
+      tagline: 'Комерційний проєкт',
+      stack: ['Python', 'Django DRF', 'FastAPI', 'PostgreSQL', 'Pytest', 'Docker'],
+      description:
+        'Провів рефакторинг ключових легасі-компонентів, оптимізував DB-запити та швидкість роботи API для продакшену. Реалізував нові бекенд-модулі для бронювання кортів у реальному часі та автоматичного розкладу ігор.',
+    },
+    {
+      name: 'LeoRent',
+      tagline: 'AI-Платформа для оренди нерухомості',
+      stack: ['Python', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'AI Integration', 'REST API', 'Docker'],
+      description:
+        'Спроектував бекенд-екосистему для платформи оренди нерухомості з інтегрованим AI-асистентом для автоматизації пошуку та підбору житла. Побудував масштабовані RESTful API ендпоінти для управління оголошеннями, запитами користувачів та динамічної фільтрації.',
+    },
+    {
+      name: 'Zettelkasten Note & Task Ecosystem',
+      tagline: 'Кросплатформена локально-перша система нотаток',
+      stack: ['Python', 'FastAPI', 'SQLite/PostgreSQL', 'Flutter', 'Dart', 'REST API'],
+      description:
+        'Спроектував кросплатформений рушій для нотаток і задач за методом Zettelkasten за принципом "local-first, cloud-second". Реалізував алгоритми синхронізації даних для безшовного управління станом між пристроями та офлайн-персистентністю з хмарним бекапом.',
+    },
+    {
+      name: 'Notes AI Manager',
+      tagline: 'Інтеграція локальних LLM',
+      stack: ['Python', 'Ollama API', 'Local LLMs', 'Markdown Parser', 'Graph Generation'],
+      description:
+        'Створив автоматизовану систему обробки нотаток на базі локальних моделей Ollama для аналізу, узагальнення та автогенерації структурованих .md конспектів. Реалізував динамічний генератор графа знань для інтерактивних візуальних mind-maps.',
+    },
+    {
+      name: 'sddm_dots',
+      tagline: 'Конфігурації системи та середовища',
+      stack: ['Linux', 'QML', 'Shell Scripting', 'Custom Unix Configuration'],
+      description:
+        'Створив кастомну анімовану тему та конфігурацію dotfiles для дисплейного менеджера SDDM. Проєкт демонструє впевнене володіння Linux CLI, системним кастомізуванням та UI-скриптами.',
+    },
+  ],
+  education: [
+    {
+      degree: 'Бакалавр: Комп\'ютерні науки (Спеціальність 122)',
+      institution: 'Національний університет «Львівська політехніка»',
+      period: 'Вересень 2023 – дотепер',
+      focus:
+        'Глибокий фокус на інженерії програмного забезпечення, структурах даних, архітектурі систем та проектуванні баз даних.',
+    },
+  ],
+  contact: [
+    {
+      label: 'Email',
+      value: 'danylolv2006@gmail.com',
+      href: 'mailto:danylolv2006@gmail.com',
+    },
+    {
+      label: 'GitHub',
+      value: 'github.com/katharsis23',
+      href: 'https://github.com/katharsis23',
+    },
+  ],
+};
