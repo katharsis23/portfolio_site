@@ -39,7 +39,6 @@ export function Cava() {
     if (!ctx) return;
 
     let raf = 0;
-    let running = false;
     let w = 0;
     let h = 0;
 
@@ -59,8 +58,7 @@ export function Cava() {
       const levels = levelsRef.current;
       const now = performance.now();
       for (let i = 0; i < BAR_COUNT; i++) {
-        const target =
-          0.25 + 0.5 * (0.5 + 0.5 * Math.sin(i * 1.7 + now / 420));
+        const target = 0.25 + 0.5 * (0.5 + 0.5 * Math.sin(i * 1.7 + now / 420));
         // Exponential smoothing gives the organic, audio-like attack/release.
         levels[i] += (target - levels[i]) * 0.12;
       }
@@ -98,14 +96,12 @@ export function Cava() {
 
     // The canvas is mounted only when heavy animations are on; run the loop
     // while the radio player is playing and stop scheduling immediately when
-    // it pauses (the `data-active` gate).
-    if (isPlaying && !running) {
-      running = true;
+    // it pauses (the cleanup cancels the rAF).
+    if (isPlaying) {
       tick();
     }
 
     return () => {
-      running = false;
       if (raf) cancelAnimationFrame(raf);
       window.removeEventListener('resize', resize);
     };

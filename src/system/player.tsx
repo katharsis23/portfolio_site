@@ -7,7 +7,7 @@ import React, {
   useCallback,
   type ReactNode,
 } from 'react';
-import { TRACKS, type Track } from "../content/songs";
+import { TRACKS, type Track } from '../content/songs';
 
 interface PlayerContextType {
   tracks: readonly Track[];
@@ -45,7 +45,13 @@ export const PlayerProvider: React.FC<{ children: ReactNode }> = ({
   const [duration, setDuration] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const indexRef = useRef(currentIndex);
-  indexRef.current = currentIndex;
+
+  // Keep the imperative index in sync with the React state after each render,
+  // so `next`/`prev`/`play` read the current track through an event handler
+  // (never during render, per the react-hooks/refs rule).
+  useEffect(() => {
+    indexRef.current = currentIndex;
+  }, [currentIndex]);
 
   const ensureAudio = () => {
     if (!audioRef.current) {
@@ -113,13 +119,16 @@ export const PlayerProvider: React.FC<{ children: ReactNode }> = ({
     [loadTrack]
   );
 
-  const seek = useCallback((fraction: number) => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    const t = fraction * (audio.duration || duration);
-    audio.currentTime = t;
-    setProgress(fraction);
-  }, [duration]);
+  const seek = useCallback(
+    (fraction: number) => {
+      const audio = audioRef.current;
+      if (!audio) return;
+      const t = fraction * (audio.duration || duration);
+      audio.currentTime = t;
+      setProgress(fraction);
+    },
+    [duration]
+  );
 
   // Wire up media events on the shared element.
   useEffect(() => {
@@ -175,4 +184,3 @@ export const usePlayer = (): PlayerContextType => {
   }
   return context;
 };
-

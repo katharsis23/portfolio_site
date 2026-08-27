@@ -31,11 +31,7 @@ import {
  * The decorative CAVA background is mounted once; its rAF loop is gated by
  * performance mode + the player's playing state (see Cava.tsx).
  */
-export function AppShell({
-  content,
-}: {
-  content?: PortfolioContent;
-}) {
+export function AppShell({ content }: { content?: PortfolioContent }) {
   const { current, navigate, next, previous } = useNavigation();
   const { t, content: langContent, lang, tWorkspace } = useLanguage();
   const { isAnimationOn } = usePerformance();
@@ -167,4 +163,3 @@ export function AppShell({
     </div>
   );
 }
-

@@ -119,4 +119,3 @@ export const UI_STRINGS = {
 } as const;
 
 export type UiStrings = (typeof UI_STRINGS)['en'];
-

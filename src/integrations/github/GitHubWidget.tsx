@@ -62,9 +62,16 @@ export function GitHubWidget() {
         </p>
       )}
       {state.status === 'error' && (
-        <p className="ws-meta" role="alert">
-          {state.error.message}
-        </p>
+        <div className="ws-gh-error" role="alert">
+          <p className="ws-meta">{state.error.message}</p>
+          <button
+            type="button"
+            className="ws-btn ws-btn--ghost ws-gh-retry"
+            onClick={reload}
+          >
+            Retry
+          </button>
+        </div>
       )}
       {state.status === 'success' && (
         <div className="ws-gh-stats" role="list" aria-label="GitHub stats">
@@ -74,13 +81,13 @@ export function GitHubWidget() {
               <span className="ws-gh-stat-label">{cell.label}</span>
             </div>
           ))}
-          {/* <button
+          <button
             type="button"
             className="ws-btn ws-btn--ghost ws-gh-retry"
             onClick={reload}
           >
             Refresh
-          </button> */}
+          </button>
         </div>
       )}
     </section>

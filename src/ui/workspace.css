@@ -296,6 +296,12 @@
   margin-left: auto;
 }
 
+.ws-gh-error {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 /* Visually hidden but present for assistive technology */
 .sr-workspace {
   position: absolute;

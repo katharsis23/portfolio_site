@@ -27,9 +27,7 @@ export function Settings() {
 
       <div className="widget-body">
         <fieldset className="setting-field">
-          <legend className="setting-label">
-            {t('performanceLabel')}
-          </legend>
+          <legend className="setting-label">{t('performanceLabel')}</legend>
           <label className="setting-toggle">
             <input
               type="checkbox"
@@ -99,4 +97,3 @@ export function Settings() {
     </section>
   );
 }
-

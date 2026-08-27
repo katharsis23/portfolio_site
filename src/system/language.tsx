@@ -11,7 +11,7 @@ import {
   portfolioUkr,
   type PortfolioContent,
 } from '../content/portfolio';
-import { UI_STRINGS } from "../content/uiStrings";
+import { UI_STRINGS } from '../content/uiStrings';
 
 export type LanguageId = 'en' | 'uk';
 
@@ -103,4 +103,3 @@ export const useLanguage = (): LanguageContextType => {
   }
   return context;
 };
-

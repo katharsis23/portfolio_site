@@ -199,7 +199,7 @@ export const portfolioEng: PortfolioContent = {
     {
       label: 'Linkedin',
       value: 'www.linkedin.com/in/danylo-herchakivskyi-41555140a',
-      href: 'http://www.linkedin.com/in/danylo-herchakivskyi-41555140a'
+      href: 'http://www.linkedin.com/in/danylo-herchakivskyi-41555140a',
     },
     {
       label: 'GitHub',
@@ -284,28 +284,56 @@ export const portfolioUkr: PortfolioContent = {
     {
       name: 'Padel Sports Platform',
       tagline: 'Комерційний проєкт',
-      stack: ['Python', 'Django DRF', 'FastAPI', 'PostgreSQL', 'Pytest', 'Docker'],
+      stack: [
+        'Python',
+        'Django DRF',
+        'FastAPI',
+        'PostgreSQL',
+        'Pytest',
+        'Docker',
+      ],
       description:
         'Провів рефакторинг ключових легасі-компонентів, оптимізував DB-запити та швидкість роботи API для продакшену. Реалізував нові бекенд-модулі для бронювання кортів у реальному часі та автоматичного розкладу ігор.',
     },
     {
       name: 'LeoRent',
       tagline: 'AI-Платформа для оренди нерухомості',
-      stack: ['Python', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'AI Integration', 'REST API', 'Docker'],
+      stack: [
+        'Python',
+        'FastAPI',
+        'PostgreSQL',
+        'SQLAlchemy',
+        'AI Integration',
+        'REST API',
+        'Docker',
+      ],
       description:
         'Спроектував бекенд-екосистему для платформи оренди нерухомості з інтегрованим AI-асистентом для автоматизації пошуку та підбору житла. Побудував масштабовані RESTful API ендпоінти для управління оголошеннями, запитами користувачів та динамічної фільтрації.',
     },
     {
       name: 'Zettelkasten Note & Task Ecosystem',
       tagline: 'Кросплатформена локально-перша система нотаток',
-      stack: ['Python', 'FastAPI', 'SQLite/PostgreSQL', 'Flutter', 'Dart', 'REST API'],
+      stack: [
+        'Python',
+        'FastAPI',
+        'SQLite/PostgreSQL',
+        'Flutter',
+        'Dart',
+        'REST API',
+      ],
       description:
         'Спроектував кросплатформений рушій для нотаток і задач за методом Zettelkasten за принципом "local-first, cloud-second". Реалізував алгоритми синхронізації даних для безшовного управління станом між пристроями та офлайн-персистентністю з хмарним бекапом.',
     },
     {
       name: 'Notes AI Manager',
       tagline: 'Інтеграція локальних LLM',
-      stack: ['Python', 'Ollama API', 'Local LLMs', 'Markdown Parser', 'Graph Generation'],
+      stack: [
+        'Python',
+        'Ollama API',
+        'Local LLMs',
+        'Markdown Parser',
+        'Graph Generation',
+      ],
       description:
         'Створив автоматизовану систему обробки нотаток на базі локальних моделей Ollama для аналізу, узагальнення та автогенерації структурованих .md конспектів. Реалізував динамічний генератор графа знань для інтерактивних візуальних mind-maps.',
     },
@@ -319,7 +347,7 @@ export const portfolioUkr: PortfolioContent = {
   ],
   education: [
     {
-      degree: 'Бакалавр: Комп\'ютерні науки (Спеціальність 122)',
+      degree: "Бакалавр: Комп'ютерні науки (Спеціальність 122)",
       institution: 'Національний університет «Львівська політехніка»',
       period: 'Вересень 2023 – дотепер',
       focus:
