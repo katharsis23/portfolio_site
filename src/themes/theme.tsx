@@ -192,7 +192,5 @@ function isCssGradient(wallpaperUrl: string): boolean {
  */
 function toWallpaperCss(wallpaperUrl: string): string {
   const trimmed = wallpaperUrl.trim();
-  return isCssGradient(trimmed)
-    ? trimmed
-    : `url("${trimmed}")`;
+  return isCssGradient(trimmed) ? trimmed : `url("${trimmed}")`;
 }

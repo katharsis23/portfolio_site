@@ -40,19 +40,19 @@ const DOODLE_SPACE_NORD_THEME: WallpaperTheme = {
   wallpaperUrl: doodleSpaceNord,
   extracted: true,
   colours: {
-    background: '#12131c', 
-  
-    surface: 'rgba(24, 26, 35, 0.85)', 
-  
-    onSurface: '#e8e8f2', 
-  
-  primary: '#ff8fa3', 
-  
-  secondary: '#8ab4f8', 
-  
-  borders: 'rgba(255, 143, 163, 0.35)',
-  }
-}
+    background: '#12131c',
+
+    surface: 'rgba(24, 26, 35, 0.85)',
+
+    onSurface: '#e8e8f2',
+
+    primary: '#ff8fa3',
+
+    secondary: '#8ab4f8',
+
+    borders: 'rgba(255, 143, 163, 0.35)',
+  },
+};
 
 const ABSTRACT_THEME: WallpaperTheme = {
   id: 'abstract',
@@ -66,9 +66,8 @@ const ABSTRACT_THEME: WallpaperTheme = {
     primary: '#3db8ba',
     secondary: '#237375',
     borders: 'rgba(61, 184, 186, 0.35)',
-  }
-}
-
+  },
+};
 
 const ACRYLIC_THEME: WallpaperTheme = {
   id: 'acrylic',
@@ -81,9 +80,9 @@ const ACRYLIC_THEME: WallpaperTheme = {
     onSurface: '#e8e8f2',
     primary: '#ff8fa3',
     secondary: '#8ab4f8',
-    borders: 'rgba(255, 143, 163, 0.35)'
-  }
-}
+    borders: 'rgba(255, 143, 163, 0.35)',
+  },
+};
 
 const ANIME_NORD_THEME: WallpaperTheme = {
   id: 'anime-nord',
@@ -92,13 +91,13 @@ const ANIME_NORD_THEME: WallpaperTheme = {
   extracted: true,
   colours: {
     background: '#1a1d24',
-      surface: 'rgba(28, 31, 38, 0.88)',
-      onSurface: '#f2f4f8',
-      primary: '#d95360',
-      secondary: '#a3b1c6',
-      borders: 'rgba(217, 83, 96, 0.4)',
-  }
-}
+    surface: 'rgba(28, 31, 38, 0.88)',
+    onSurface: '#f2f4f8',
+    primary: '#d95360',
+    secondary: '#a3b1c6',
+    borders: 'rgba(217, 83, 96, 0.4)',
+  },
+};
 
 const ANIME_CAFE_TOKYO_THEME: WallpaperTheme = {
   id: 'anime-cafe-tokyo',
@@ -107,14 +106,13 @@ const ANIME_CAFE_TOKYO_THEME: WallpaperTheme = {
   extracted: true,
   colours: {
     background: '#18151e',
-      surface: 'rgba(31, 27, 38, 0.85)',
-      onSurface: '#f0eaf7',
-      primary: '#d8a8e8',
-      secondary: '#e5aa90',
-      borders: 'rgba(216, 168, 232, 0.35)',
-  }
-}
-
+    surface: 'rgba(31, 27, 38, 0.85)',
+    onSurface: '#f0eaf7',
+    primary: '#d8a8e8',
+    secondary: '#e5aa90',
+    borders: 'rgba(216, 168, 232, 0.35)',
+  },
+};
 
 const CATPPUCCIN_LANDSCAPE_THEME: WallpaperTheme = {
   id: 'catppuccin-landscape',
@@ -123,13 +121,13 @@ const CATPPUCCIN_LANDSCAPE_THEME: WallpaperTheme = {
   extracted: true,
   colours: {
     background: '#12111d',
-      surface: 'rgba(22, 21, 36, 0.85)',
-      onSurface: '#e8e5f5',
-      primary: '#cc99bb',
-      secondary: '#6c82a6',
-      borders: 'rgba(204, 153, 187, 0.35)',
-  }
-}
+    surface: 'rgba(22, 21, 36, 0.85)',
+    onSurface: '#e8e5f5',
+    primary: '#cc99bb',
+    secondary: '#6c82a6',
+    borders: 'rgba(204, 153, 187, 0.35)',
+  },
+};
 
 const CATPPUCCIN_SAMURAI_THEME: WallpaperTheme = {
   id: 'catppuccin-samurai',
@@ -138,28 +136,28 @@ const CATPPUCCIN_SAMURAI_THEME: WallpaperTheme = {
   extracted: true,
   colours: {
     background: '#0f141d',
-      surface: 'rgba(19, 26, 38, 0.85)',
-      onSurface: '#e6f1f8',
-      primary: '#56b6f6',
-      secondary: '#f0a868',
-      borders: 'rgba(86, 182, 246, 0.35)',
-  }
-}
+    surface: 'rgba(19, 26, 38, 0.85)',
+    onSurface: '#e6f1f8',
+    primary: '#56b6f6',
+    secondary: '#f0a868',
+    borders: 'rgba(86, 182, 246, 0.35)',
+  },
+};
 
 const NORD_DARK_CITY_THEME: WallpaperTheme = {
-    id: 'nord-dark-city',
-    name: 'Nord Dark City',
-    wallpaperUrl: nordDarkCity,
-    extracted: true,
-    colours: {
-      background: '#0f1115',
-      surface: 'rgba(21, 24, 30, 0.88)',
-      onSurface: '#e5e9f0',
-      primary: '#d08770',   
-      secondary: '#88c0d0', 
-      borders: 'rgba(208, 135, 112, 0.35)',
-    }
-}
+  id: 'nord-dark-city',
+  name: 'Nord Dark City',
+  wallpaperUrl: nordDarkCity,
+  extracted: true,
+  colours: {
+    background: '#0f1115',
+    surface: 'rgba(21, 24, 30, 0.88)',
+    onSurface: '#e5e9f0',
+    primary: '#d08770',
+    secondary: '#88c0d0',
+    borders: 'rgba(208, 135, 112, 0.35)',
+  },
+};
 
 /**
  * Static wallpaper themes (bundled assets). Each carries a fallback palette
@@ -174,9 +172,9 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
   ANIME_CAFE_TOKYO_THEME,
   CATPPUCCIN_LANDSCAPE_THEME,
   CATPPUCCIN_SAMURAI_THEME,
-  NORD_DARK_CITY_THEME
-]
- 
+  NORD_DARK_CITY_THEME,
+];
+
 // export const WALLPAPER_THEMES: WallpaperTheme[] = [
 //   {
 //     id: 'nord',

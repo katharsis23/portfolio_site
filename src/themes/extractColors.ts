@@ -58,8 +58,7 @@ function mix(a: RGB, b: RGB, t: number): RGB {
 function deriveTokens(palette: RGB[]): ThemeColours {
   const background = palette[0] ?? { r: 30, g: 30, b: 46 };
   // Brighter accent from the more saturated palette entries.
-  const accent =
-    palette.find((p) => luminance(p) > 0.3) ?? background;
+  const accent = palette.find((p) => luminance(p) > 0.3) ?? background;
   let secondary = palette[2] ?? accent;
 
   // Surface: background mixed slightly toward black/white for depth.
@@ -161,4 +160,3 @@ export async function extractColorsFromImage(
     };
   }
 }
-

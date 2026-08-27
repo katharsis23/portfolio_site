@@ -30,6 +30,14 @@
   align-items: start;
 }
 
+/* Left column: hero window stacked above the Shortcuts cheat-sheet strip. */
+.shell-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
 /* ---- Hero window (left, ~65-70%) ---- */
 .hero-window {
   border-radius: 0.9rem;
@@ -38,9 +46,32 @@
 .hero-window-body {
   padding: 1.5rem 1.75rem;
   overflow-y: auto;
-  max-height: calc(100svh - 11rem);
+  /* Leave room for waybar + statusbar + the shortcuts strip under the hero. */
+  max-height: calc(100svh - 18rem);
   scrollbar-width: thin;
   overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/*
+ * Workspace entrance transition. The body is re-keyed by the active workspace
+ * id (AppShell), so each switch remounts the wrapper and replays a short
+ * reveal. It is a light opacity/transform move and stays on unless the user
+ * prefers reduced motion (disabled below).
+ */
+.ws-transition {
+  animation: ws-entrance 360ms var(--ease-out, ease-out) both;
+}
+
+@keyframes ws-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Window control dots */
@@ -73,16 +104,38 @@
   overscroll-behavior: contain;
 }
 
-/* Make the terminal the most prominent sidebar utility: give it the bulk of
-   the column height and a highlighted border/glow so it reads as the primary
-   tool (the standalone PerformanceMetrics widget now lives inside it). */
+/* Make the terminal the most prominent utility. With Shortcuts moved out of
+   the sidebar (now under the hero), the terminal runs the full height of the
+   column, so it gets a larger minimum and a highlighted border/glow. */
 .app-sidebar .widget[data-widget='terminal'] {
   flex: 1 1 auto;
-  min-height: 16rem;
+  min-height: 22rem;
   border-color: var(--primary);
   box-shadow:
     0 0 0 1px color-mix(in srgb, var(--primary) 35%, transparent),
     0 18px 38px -14px rgb(0 0 0 / 0.4);
+}
+
+/* ---- Shortcuts cheat-sheet strip under the hero window ---- */
+.shell-subrow {
+  min-width: 0;
+  /* Keep scrollIntoView (Alt+/) below the sticky waybar. */
+  scroll-margin-top: 5rem;
+}
+
+/* A compact horizontal strip instead of the tall sidebar column: shortcut
+   rows lay out in a responsive grid so nothing forces the page to scroll. */
+.shell-subrow .widget[data-widget='shortcuts'] {
+  border-color: color-mix(in srgb, var(--secondary) 40%, transparent);
+}
+
+.shell-subrow .shortcut-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  max-height: none;
+  overflow: visible;
 }
 
 /* ---- Bottom status bar ---- */
@@ -261,15 +314,22 @@ html[data-performance-mode='on'] .ws-card {
   background: color-mix(in srgb, var(--surface) 78%, transparent);
 }
 
-/* Respect reduced motion: no blur transitions */
+/* Respect reduced motion: no blur/entrance transitions */
 @media (prefers-reduced-motion: reduce) {
   .ws-btn {
     transition: none;
+  }
+  .ws-transition {
+    animation: none;
   }
 }
 
 /* ---- Responsive: collapse grid to single column ---- */
 @media (max-width: 860px) {
+  .app-content {
+    max-width: 46rem;
+  }
+
   .shell-grid {
     grid-template-columns: 1fr;
   }
@@ -283,5 +343,10 @@ html[data-performance-mode='on'] .ws-card {
 
   .hero-window-body {
     max-height: none;
+  }
+
+  /* Keep the shortcut strip tidy on smaller screens. */
+  .shell-subrow .shortcut-list {
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
   }
 }

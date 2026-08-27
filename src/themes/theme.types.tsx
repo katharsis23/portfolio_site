@@ -18,4 +18,3 @@ export interface WallpaperTheme {
   /** True once real colours were extracted from the wallpaper image. */
   extracted?: boolean;
 }
-

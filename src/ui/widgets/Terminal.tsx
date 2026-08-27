@@ -62,8 +62,7 @@ export function Terminal({ onFocusSelf }: TerminalProps) {
     if (cmd === 'help') {
       print([
         {
-          content:
-            'about, experience, skills, projects, education, contact',
+          content: 'about, experience, skills, projects, education, contact',
           kind: 'out',
         },
         {
@@ -89,20 +88,24 @@ export function Terminal({ onFocusSelf }: TerminalProps) {
     }
     // fastfetch: host ASCII + distro / dev-stack summary.
     if (cmd === 'fastfetch') {
+      const info = [
+        'nixos@hyprland',
+        '────────────────────',
+        'OS        : NixOS (Linux)',
+        'Host      : portable-laptop',
+        'WM        : Hyprland',
+        'Shell     : fish',
+        'Dev stack : Python · FastAPI · TS',
+        'Role      : Backend Developer',
+        `Theme     : ${currentTheme.name}`,
+      ];
+      // Measure the real widget width (not the viewport) so the banner never
+      // overflows: the terminal can be a narrow sidebar column or a wide sheet.
       print([
-        { content: NIXOS_ASCII, kind: 'out' },
-        { content: '                   nixos@hyprland', kind: 'out' },
-        { content: '────────────────────────────────────', kind: 'info' },
-        { content: 'OS        : NixOS (Linux)', kind: 'out' },
-        { content: 'Host      : portable-laptop', kind: 'out' },
-        { content: 'WM        : Hyprland', kind: 'out' },
-        { content: 'Shell     : fish', kind: 'out' },
         {
-          content: 'Dev stack : Python · FastAPI · Django · TypeScript',
-          kind: 'ok',
+          content: fastfetchOutput(info, measureTermCols(listRef.current)),
+          kind: 'out',
         },
-        { content: 'Role      : Python Backend Developer', kind: 'ok' },
-        { content: `Theme     : ${currentTheme.name}`, kind: 'out' },
       ]);
       return;
     }
@@ -202,19 +205,58 @@ export function Terminal({ onFocusSelf }: TerminalProps) {
 }
 
 /** NixOS ASCII art shown by the `fastfetch` command. */
-const NIXOS_ASCII = [
-  '             `..`',
-  '         `-oyysoo:`',
-  '      `:oyyso/...-::`',
-  '    :oys+:.      `+++`',
-  '  `oyo-`          oyyy`',
-  ' `yo/`          :yyyso-',
-  ' -ys:`        .+yyyyyy+`',
-  ' +yyy/.     `/yyyyyyyyy+`',
-  ' `+yyyyyo+//oyyyyyssoo/:',
-  '   .+yyyyyyssoo/-.`',
-  '      `..-..`',
-].join('\n');
+const NIXOS_ASCII_COMPACT = [
+  '        ___   __            ',
+  '  /¯\\    \\  \\ /  ;          ',
+  '  \\  \\    \\  v  /           ',
+  ' /¯¯¯   ¯¯¯¯\\\\   /  /\\      ',
+  '’————————————·\\  \\ /  ;     ',
+  '     /¯¯;      \\ //  /_     ',
+  '____/  /        ‘/     \\    ',
+  '\\      /,        /  /¯¯¯¯   ',
+  ' ¯¯/  // \\      /__/        ',
+  '  .  / \\  \\·————————————.   ',
+  '   \\/  /   \\\\_____   ___/   ',
+  '      /  ,  \\     \\  \\      ',
+  '      \\_/ \\__\\     \\_/      ',
+];
+
+/**
+ * Approximate how many monospace columns fit in the terminal's rendered body.
+ * Uses the actual `term-lines` width, so a narrow sidebar terminal correctly
+ * selects the stacked layout while a wide floating sheet gets two columns.
+ */
+function measureTermCols(el: HTMLElement | null): number {
+  if (!el || el.clientWidth === 0) {
+    return 72; // sane fallback before layout is measured
+  }
+  // ~0.6em advance per monospace glyph at the 0.8rem terminal font size.
+  const size = parseFloat(getComputedStyle(el).fontSize) || 12.8;
+  const pxPerCol = size * 0.6;
+  return Math.max(20, Math.floor(el.clientWidth / pxPerCol));
+}
+
+/**
+ * Compose the fastfetch read-out from the ASCII banner and the host info.
+ * Renders side-by-side when the terminal is wide enough, stacked vertically
+ * on narrower terminals, so the artwork never wraps or clips.
+ */
+function fastfetchOutput(info: string[], cols: number): string {
+  const ASCII_WIDTH = 30;
+  const MIN_TWO_COL = 62;
+
+  if (cols >= MIN_TWO_COL) {
+    const rows = Math.max(NIXOS_ASCII_COMPACT.length, info.length);
+    const merged: string[] = [];
+    for (let i = 0; i < rows; i++) {
+      const art = (NIXOS_ASCII_COMPACT[i] ?? '').padEnd(ASCII_WIDTH, ' ');
+      merged.push(art + (info[i] ?? ''));
+    }
+    return merged.join('\n');
+  }
+
+  return [...NIXOS_ASCII_COMPACT, '', ...info].join('\n');
+}
 
 /**
  * Build the lines reported by `perf` / `performance on|off` / `systemctl`, the

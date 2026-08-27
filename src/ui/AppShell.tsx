@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigation } from '../system';
 import { useKeyboardShortcut } from '../keyboard';
 import { portfolioEng, type PortfolioContent } from '../content/portfolio';
 import { Waybar } from './waybar';
 import { WidgetsLayer, type WidgetId } from './WidgetsLayer';
 import { Sidebar } from './Sidebar';
+import { Shortcuts } from './widgets/Shortcuts';
 import {
   About,
   Experience,
@@ -16,15 +17,17 @@ import {
 
 /**
  * AppShell — composes the Hyprland-style shell:
- *   waybar (top) → tiling grid (hero window + sidebar) → bottom status bar.
+ *   waybar (top) → tiling grid → bottom status bar.
  *
- * The hero window wraps the active workspace in a terminal-style title bar
- * ("Workspace / About") with window controls; the sidebar stacks the utility
- * windows (terminal, performance, shortcuts) per the tiling layout concept.
+ * Tiling grid:
+ *   - left column (`.shell-main`): the hero window (active workspace) with the
+ *     Shortcuts cheat-sheet strip directly beneath it;
+ *   - right column (`.app-sidebar`): Settings + Terminal. Moving Shortcuts out
+ *     of the sidebar gives the terminal the full vertical run of the column,
+ *     so it is the most prominent utility.
  *
- * This is the portfolio layer: the content on its own is fully usable without
- * the terminal decoration. The Waybar is the visible navigation; widgets are
- * optional floating utility windows, each with a visible open control.
+ * The workspace body is re-keyed by the active workspace id so switching
+ * workspaces plays a short entrance transition (see workspace.css).
  */
 export function AppShell({
   content = portfolioEng,
@@ -33,11 +36,21 @@ export function AppShell({
 }) {
   const { current, navigate, next, previous } = useNavigation();
   const [openWidgets, setOpenWidgets] = useState<WidgetId[]>([]);
+  const subrowRef = useRef<HTMLDivElement>(null);
 
   const toggleWidget = (id: WidgetId) => {
     setOpenWidgets((prev) =>
       prev.includes(id) ? prev.filter((w) => w !== id) : [...prev, id]
     );
+  };
+
+  // Shortcuts now live permanently under the hero; Alt+/ brings the strip
+  // into view instead of toggling a (now removed) duplicate floating window.
+  const revealShortcuts = () => {
+    subrowRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+    });
   };
 
   // Keyboard → same canonical actions (navigation + window toggles).
@@ -51,7 +64,7 @@ export function AppShell({
     NAV_NEXT: next,
     NAV_PREV: previous,
     TOGGLE_TERMINAL: () => toggleWidget('terminal'),
-    TOGGLE_HELP: () => toggleWidget('shortcuts'),
+    TOGGLE_HELP: revealShortcuts,
     CLOSE_ALL: () => setOpenWidgets([]),
   });
 
@@ -62,42 +75,57 @@ export function AppShell({
       <Waybar />
 
       <main className="app-content" tabIndex={-1}>
-        {/* Tiling grid: hero window (left) + sidebar (right) */}
+        {/* Tiling grid: main column (hero + shortcuts) + sidebar */}
         <div className="shell-grid">
-          <section
-            className="hero-window window"
-            aria-label={`${current.label} workspace`}
-          >
-            <header className="window-titlebar">
-              <span className="window-title">Workspace / {workspaceTitle}</span>
-              <span className="window-dots" aria-hidden="true">
-                <i />
-                <i />
-                <i />
-              </span>
-            </header>
+          <div className="shell-main">
+            <section
+              className="hero-window window"
+              aria-label={`${current.label} workspace`}
+            >
+              <header className="window-titlebar">
+                <span className="window-title">
+                  Workspace / {workspaceTitle}
+                </span>
+                <span className="window-dots" aria-hidden="true">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+              </header>
 
-            <div className="hero-window-body custom-scrollbar">
-              {current.id === 'about' && (
-                <About
-                  name={content.name}
-                  role={content.role}
-                  about={content.about}
-                />
-              )}
-              {current.id === 'experience' && (
-                <Experience items={content.experience} />
-              )}
-              {current.id === 'skills' && <Skills groups={content.skills} />}
-              {current.id === 'projects' && (
-                <Projects items={content.projects} />
-              )}
-              {current.id === 'education' && (
-                <Education items={content.education} />
-              )}
-              {current.id === 'contact' && <Contact items={content.contact} />}
+              <div className="hero-window-body custom-scrollbar">
+                <div key={current.id} className="ws-transition">
+                  {current.id === 'about' && (
+                    <About
+                      name={content.name}
+                      role={content.role}
+                      about={content.about}
+                    />
+                  )}
+                  {current.id === 'experience' && (
+                    <Experience items={content.experience} />
+                  )}
+                  {current.id === 'skills' && (
+                    <Skills groups={content.skills} />
+                  )}
+                  {current.id === 'projects' && (
+                    <Projects items={content.projects} />
+                  )}
+                  {current.id === 'education' && (
+                    <Education items={content.education} />
+                  )}
+                  {current.id === 'contact' && (
+                    <Contact items={content.contact} />
+                  )}
+                </div>
+              </div>
+            </section>
+
+            {/* Shortcuts cheat-sheet strip tucked under the hero window */}
+            <div className="shell-subrow" ref={subrowRef}>
+              <Shortcuts />
             </div>
-          </section>
+          </div>
 
           <Sidebar />
         </div>

@@ -1,7 +1,7 @@
-import { Terminal, Settings, Shortcuts } from './widgets';
+import { Terminal, Settings } from './widgets';
 import type { ReactNode } from 'react';
 
-export type WidgetId = 'terminal' | 'settings' | 'shortcuts';
+export type WidgetId = 'terminal' | 'settings';
 
 interface WidgetsLayerProps {
   open: WidgetId[];
@@ -9,8 +9,12 @@ interface WidgetsLayerProps {
 }
 
 /**
- * WidgetsLayer — renders open utility windows (terminal, settings, shortcuts)
- * as floating Hyprland/Wayland-style surfaces layered above the content.
+ * WidgetsLayer — renders open utility windows (terminal, settings) as floating
+ * Hyprland/Wayland-style surfaces layered above the content.
+ *
+ * The Shortcuts cheat-sheet is not floating anymore: it now lives permanently
+ * under the hero window in the tiling grid (AppShell `.shell-subrow`), so the
+ * sidebar + floating layer stay focused on the terminal and settings.
  *
  * Each widget renders its own window shell (title bar + body). The layer
  * positions them and adds a visible close control. On touch/small screens
@@ -27,11 +31,6 @@ export function WidgetsLayer({ open, onClose }: WidgetsLayerProps) {
       {open.includes('settings') && (
         <WidgetSlot id="settings" onClose={() => onClose('settings')}>
           <Settings />
-        </WidgetSlot>
-      )}
-      {open.includes('shortcuts') && (
-        <WidgetSlot id="shortcuts" onClose={() => onClose('shortcuts')}>
-          <Shortcuts />
         </WidgetSlot>
       )}
     </div>
