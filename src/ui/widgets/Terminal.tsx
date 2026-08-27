@@ -30,8 +30,8 @@ const PLACEHOLDER = 'type a command… try "help"';
  */
 export function Terminal({ onFocusSelf }: TerminalProps) {
   const { navigate, current } = useNavigation();
-  const { setTheme, themeSet } = useTheme();
-  const { setMode } = usePerformance();
+  const { setTheme, themeSet, currentTheme } = useTheme();
+  const { setMode, isAnimationOn } = usePerformance();
   const [value, setValue] = useState('');
   const [lines, setLines] = useState<Line[]>([
     {
@@ -62,14 +62,16 @@ export function Terminal({ onFocusSelf }: TerminalProps) {
     if (cmd === 'help') {
       print([
         {
-          content: 'about, experience, skills, projects, education, contact',
+          content:
+            'about, experience, skills, projects, education, contact',
           kind: 'out',
         },
         {
           content:
-            'next / prev  |  theme <name>  |  performance on|off  |  sudo hire-me',
+            'next / prev  |  theme <name>  |  performance on|off  |  fastfetch',
           kind: 'out',
         },
+        { content: 'systemctl status  |  clear  |  sudo hire-me', kind: 'out' },
       ]);
       return;
     }
@@ -79,16 +81,45 @@ export function Terminal({ onFocusSelf }: TerminalProps) {
     if (cmd === 'projects') return navigate('projects');
     if (cmd === 'education') return navigate('education');
     if (cmd === 'contact') return navigate('contact');
-    if (cmd === 'next') return; // TODO: expose next/prev via terminal if desired
+    if (cmd === 'next') return;
     if (cmd === 'prev') return;
-    if (cmd === 'perf' || cmd === 'performance on') {
+    if (cmd === 'clear' || cmd === 'cls') {
+      setLines([]);
+      return;
+    }
+    // fastfetch: host ASCII + distro / dev-stack summary.
+    if (cmd === 'fastfetch') {
+      print([
+        { content: NIXOS_ASCII, kind: 'out' },
+        { content: '                   nixos@hyprland', kind: 'out' },
+        { content: '────────────────────────────────────', kind: 'info' },
+        { content: 'OS        : NixOS (Linux)', kind: 'out' },
+        { content: 'Host      : portable-laptop', kind: 'out' },
+        { content: 'WM        : Hyprland', kind: 'out' },
+        { content: 'Shell     : fish', kind: 'out' },
+        {
+          content: 'Dev stack : Python · FastAPI · Django · TypeScript',
+          kind: 'ok',
+        },
+        { content: 'Role      : Python Backend Developer', kind: 'ok' },
+        { content: `Theme     : ${currentTheme.name}`, kind: 'out' },
+      ]);
+      return;
+    }
+    // Performance metrics moved into the terminal (sidebar widget removed).
+    if (cmd === 'performance' || cmd === 'perf' || cmd === 'performance on') {
       setMode(true);
-      print([{ content: 'performance mode: on', kind: 'ok' }]);
+      print(perfLines(isAnimationOn()));
       return;
     }
     if (cmd === 'performance off') {
       setMode(false);
-      print([{ content: 'performance mode: off', kind: 'ok' }]);
+      print(perfLines(isAnimationOn()));
+      return;
+    }
+    // systemctl status: report the current app state (visual/animation mode).
+    if (cmd === 'systemctl status') {
+      print(perfLines(isAnimationOn()));
       return;
     }
     if (cmd.startsWith('theme ')) {
@@ -168,4 +199,34 @@ export function Terminal({ onFocusSelf }: TerminalProps) {
       </form>
     </section>
   );
+}
+
+/** NixOS ASCII art shown by the `fastfetch` command. */
+const NIXOS_ASCII = [
+  '             `..`',
+  '         `-oyysoo:`',
+  '      `:oyyso/...-::`',
+  '    :oys+:.      `+++`',
+  '  `oyo-`          oyyy`',
+  ' `yo/`          :yyyso-',
+  ' -ys:`        .+yyyyyy+`',
+  ' +yyy/.     `/yyyyyyyyy+`',
+  ' `+yyyyyo+//oyyyyyssoo/:',
+  '   .+yyyyyyssoo/-.`',
+  '      `..-..`',
+].join('\n');
+
+/**
+ * Build the lines reported by `perf` / `performance on|off` / `systemctl`, the
+ * visual-status read-out that used to live in the PerformanceMetrics sidebar
+ * widget (now folded into the terminal, docs/CONCEPT.md §12).
+ */
+function perfLines(animationOn: boolean): Omit<Line, 'id'>[] {
+  const mode = animationOn ? 'on' : 'off';
+  return [
+    { content: 'performance / systemctl status', kind: 'info' },
+    { content: '   visuals mode  : ' + mode, kind: 'ok' },
+    { content: '   FPS           : ' + (animationOn ? 120 : 60), kind: 'out' },
+    { content: '   active modules: 6', kind: 'out' },
+  ];
 }

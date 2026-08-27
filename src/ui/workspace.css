@@ -8,16 +8,70 @@
  * no extra decoration (see docs/CONCEPT.md §6).
  */
 
+/*
+ * Smooth theme transition.
+ *
+ * Browsers can transition between two resolved colours. Our theme tokens
+ * (--surface, --onSurface, --primary, ...) are plain CSS custom properties, so
+ * by adding a transition to every surface that paints with a theme token, a
+ * theme switch becomes a smooth crossfade instead of an abrupt flash.
+ *
+ * The wallpaper itself is swapped instantly — all images are preloaded by the
+ * ThemeProvider — while the colour tokens fade over to the new palette.
+ *
+ * Duration is controlled by --theme-transition so performance mode and
+ * prefers-reduced-motion users can set it to 0ms.
+ */
+:root {
+  --theme-transition: 450ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --theme-transition: 0ms;
+  }
+}
+
+/* Every surface that paints with a theme token crossfades on change. These
+   are all colour/border transitions — no layout, GPU-composited. */
+.app-shell,
+.waybar,
+.widget,
+.window,
+.ws-card,
+.ws-project,
+.ws-edu-card,
+.ws-skill-group,
+.ws-tag,
+.waybar-pill,
+.waybar-util,
+.theme-button,
+.ws-btn,
+.app-statusbar,
+.setting-toggle,
+.perf-card,
+.hero-window,
+.hero-window-body {
+  transition:
+    background-color var(--theme-transition, 450ms) ease,
+    color var(--theme-transition, 450ms) ease,
+    border-color var(--theme-transition, 450ms) ease;
+}
+
 .app-shell {
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  background: var(--background);
+  background-color: var(--background);
+  background-image: var(--wallpaper, none);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: var(--onSurface);
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   padding: 1.5rem;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .app-content {
@@ -37,7 +91,7 @@
 
 .ws-eyebrow {
   color: var(--primary);
-  font-family: ui-monospace, Consolas, monospace;
+  font-family: var(--mono);
   font-size: 0.85rem;
   margin: 0;
 }

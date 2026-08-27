@@ -15,4 +15,7 @@ export interface WallpaperTheme {
   wallpaperUrl: string; // path to the wallpaper image
   name: string; //short name for the wallpaper
   colours: ThemeColours; // colours associated with the wallpaper
+  /** True once real colours were extracted from the wallpaper image. */
+  extracted?: boolean;
 }
+

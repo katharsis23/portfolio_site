@@ -1,4 +1,4 @@
-import { usePerformance } from '../../system';
+ import { usePerformance } from '../../system';
 
 /**
  * PerformanceMetrics — a small tiling "PERFORMANCE METRICS" window from the

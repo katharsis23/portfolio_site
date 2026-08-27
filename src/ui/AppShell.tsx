@@ -59,7 +59,7 @@ export function AppShell({
 
   return (
     <div className="app-shell">
-      <Waybar onToggleWidget={toggleWidget} />
+      <Waybar />
 
       <main className="app-content" tabIndex={-1}>
         {/* Tiling grid: hero window (left) + sidebar (right) */}

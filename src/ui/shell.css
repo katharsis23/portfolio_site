@@ -18,13 +18,14 @@
 
 /* Two-column tiling grid */
 .app-content {
-  max-width: none;
+  max-width: 88rem;
+  margin-inline: auto;
   width: 100%;
 }
 
 .shell-grid {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(18rem, 3fr);
+  grid-template-columns: minmax(0, 7fr) minmax(20rem, 3fr);
   gap: 1.25rem;
   align-items: start;
 }
@@ -39,6 +40,7 @@
   overflow-y: auto;
   max-height: calc(100svh - 11rem);
   scrollbar-width: thin;
+  overscroll-behavior: contain;
 }
 
 /* Window control dots */
@@ -68,6 +70,19 @@
   max-height: calc(100svh - 6rem);
   overflow-y: auto;
   scrollbar-width: thin;
+  overscroll-behavior: contain;
+}
+
+/* Make the terminal the most prominent sidebar utility: give it the bulk of
+   the column height and a highlighted border/glow so it reads as the primary
+   tool (the standalone PerformanceMetrics widget now lives inside it). */
+.app-sidebar .widget[data-widget='terminal'] {
+  flex: 1 1 auto;
+  min-height: 16rem;
+  border-color: var(--primary);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--primary) 35%, transparent),
+    0 18px 38px -14px rgb(0 0 0 / 0.4);
 }
 
 /* ---- Bottom status bar ---- */
@@ -123,7 +138,7 @@
 
 .ws-btn--primary {
   background: var(--primary);
-  color: var(--background);
+  color: var(--onPrimary, var(--background));
   border: 1px solid var(--primary);
 }
 
@@ -199,7 +214,7 @@
 
 .perf-label {
   margin: 0;
-  font-family: ui-monospace, Consolas, monospace;
+  font-family: var(--mono);
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -208,7 +223,7 @@
 
 .perf-value {
   margin: 0;
-  font-family: ui-monospace, Consolas, monospace;
+  font-family: var(--mono);
   font-size: 1rem;
   font-weight: 700;
   color: var(--primary);
@@ -232,13 +247,14 @@
 
 /* Typography helper: monospace used across bars and terminal chrome */
 .mono {
-  font-family: ui-monospace, Consolas, monospace;
+  font-family: var(--mono);
 }
 
 /* ---- Glassmorphism (Performance ON only) ---- */
 html[data-performance-mode='on'] .hero-window,
-html[data-performance-mode='on'] .app-sidebar .widget,
-html[data-performance-mode='on'] .app-sidebar .window,
+html[data-performance-mode='on'] .hero-window .window-titlebar,
+html[data-performance-mode='on'] .widget,
+html[data-performance-mode='on'] .window,
 html[data-performance-mode='on'] .app-statusbar,
 html[data-performance-mode='on'] .ws-card {
   backdrop-filter: blur(18px) saturate(1.5);

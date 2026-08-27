@@ -20,9 +20,15 @@
   padding: 0.5rem 0.75rem;
   border: 1px solid var(--borders);
   border-radius: 1rem;
-  background: color-mix(in srgb, var(--surface) 82%, transparent);
-  backdrop-filter: saturate(1.4) blur(12px);
-  font-family: ui-monospace, Consolas, monospace;
+  background: var(--surface);
+  font-family: var(--mono);
+}
+
+/* Glassmorphism on the waybar is gated by performance mode (heavy visuals
+   are only enabled when performance is ON — docs/CONCEPT.md §9, §12). */
+html[data-performance-mode='on'] .waybar {
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  backdrop-filter: saturate(1.5) blur(16px);
 }
 
 .waybar-workspaces,
@@ -57,7 +63,7 @@
 .waybar-pill--active {
   background: var(--primary);
   border-color: var(--primary);
-  color: var(--background);
+  color: var(--onPrimary, var(--background));
 }
 
 .waybar-util {
@@ -70,7 +76,7 @@
   background: transparent;
   color: var(--onSurface);
   font-size: 0.8rem;
-  font-family: ui-monospace, Consolas, monospace;
+  font-family: var(--mono);
   cursor: pointer;
 }
 
@@ -81,6 +87,51 @@
 
 .waybar-util-label {
   font-size: 0.7rem;
+}
+
+/* Layout groups + status read-outs added for the concept's waybar */
+.waybar-group,
+.waybar-group--right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.waybar-sep {
+  color: var(--borders);
+  opacity: 0.7;
+}
+
+.waybar-status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--onSurface);
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+.waybar-status-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.waybar-status-item--wm {
+  color: var(--primary);
+}
+
+.waybar-clock {
+  color: var(--onSurface);
+  font-weight: 700;
+  white-space: nowrap;
+}
+@media (max-width: 720px) {
+  .waybar-status-item--wm,
+  .waybar-sep {
+    display: none;
+  }
 }
 
 /* Desktop: bottom → can stay floating at top. Mobile → bottom dock. */
@@ -102,3 +153,4 @@
     padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
   }
 }
+

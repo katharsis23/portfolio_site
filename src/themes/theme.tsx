@@ -3,11 +3,13 @@ import React, {
   useContext,
   useState,
   useEffect,
-  type ReactNode,
+  useCallback,
   useMemo,
+  type ReactNode,
 } from 'react';
 import { INITIAL_CACHED_THEMES, DEFAULT_THEME } from './themes.config';
 import { type WallpaperTheme, type ThemeColours } from './theme.types';
+import { extractColorsFromImage } from './extractColors';
 
 interface ThemeContextType {
   currentTheme: WallpaperTheme;
@@ -56,18 +58,30 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
 
   const currentTheme = cachedThemes[currentThemeId] || DEFAULT_THEME;
 
-  const applyThemeColours = (colours: ThemeColours) => {
+  const applyThemeColours = useCallback((colours: ThemeColours) => {
     const root = document.documentElement;
     Object.entries(colours).forEach(([key, value]) => {
       root.style.setProperty(`--${key}`, value);
     });
-  };
+  }, []);
 
-  // Applying colours
+  // Applying colours + exposing the active wallpaper as a CSS variable.
+  // Crossfade between old and new wallpaper (layered backgrounds set in CSS).
+  // Colours animate via the CSS transition rule on :root.
   useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty(
+      '--wallpaper-prev',
+      root.style.getPropertyValue('--wallpaper') ||
+        toWallpaperCss(currentTheme.wallpaperUrl)
+    );
     applyThemeColours(currentTheme.colours);
+    root.style.setProperty(
+      '--wallpaper',
+      toWallpaperCss(currentTheme.wallpaperUrl)
+    );
     localStorage.setItem('portfolio_active_theme_id', currentTheme.id);
-  }, [currentTheme]);
+  }, [currentTheme, applyThemeColours]);
 
   useEffect(() => {
     try {
@@ -80,44 +94,63 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
     }
   }, [cachedThemes]);
 
-  // Changing currentThemeID
-  const setTheme = (id: string) => {
-    if (cachedThemes[id]) {
-      setCurrentThemeId(id);
-    }
-  };
+  // Preload every wallpaper so switching themes is instant (the browser has
+  // the image cached before it is used as the active background). Runs once
+  // against the static theme catalogue. CSS-gradient wallpapers (Default) are
+  // skipped — they need no network fetch.
+  useEffect(() => {
+    const urls = new Set<string>();
+    Object.values(INITIAL_CACHED_THEMES).forEach((t) => {
+      if (t.wallpaperUrl && !isCssGradient(t.wallpaperUrl)) {
+        urls.add(t.wallpaperUrl);
+      }
+    });
+    urls.forEach((url) => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.src = url;
+    });
+  }, []);
 
-  // Generating and caching
-  const generateAndCacheTheme = async (
-    id: string,
-    name: string,
-    imageUrl: string
-  ) => {
-    if (themeSet.has(id)) {
-      setTheme(id);
+  // Selecting a theme switches IMMEDIATELY to its current colours (fallback or
+  // previously extracted), then kicks off a background extraction that upgrades
+  // the theme once ready. This removes the lag from the old eager-extract flow.
+  const setTheme = (id: string) => {
+    const theme = cachedThemes[id];
+    if (!theme) {
       return;
     }
-
-    try {
-      const extractedColors = await extractColorsFromImage(imageUrl);
-
-      const newTheme: WallpaperTheme = {
-        id,
-        name,
-        wallpaperUrl: imageUrl,
-        colours: extractedColors,
-      };
-
-      setCachedThemes((prev) => ({
-        ...prev,
-        [id]: newTheme,
-      }));
-
-      setCurrentThemeId(id);
-    } catch (error) {
-      console.error('Error generating theme from wallpaper:', error);
+    // Switch wallpaper + fallback colours right away — no waiting for extraction.
+    setCurrentThemeId(id);
+    if (theme.wallpaperUrl && !theme.extracted) {
+      void generateAndCacheTheme(id, theme.name, theme.wallpaperUrl);
     }
   };
+
+  // Generating and caching. Upgrade the active theme's palette in place once
+  // extraction finishes so the transition effect re-runs with real colours.
+  const generateAndCacheTheme: ThemeContextType['generateAndCacheTheme'] =
+    async (id, name, imageUrl) => {
+      const existing = cachedThemes[id];
+      if (existing && existing.extracted) {
+        setCurrentThemeId(id);
+        return;
+      }
+
+      try {
+        const extractedColors = await extractColorsFromImage(imageUrl);
+        const newTheme: WallpaperTheme = {
+          id,
+          name,
+          wallpaperUrl: imageUrl,
+          colours: extractedColors,
+          extracted: true,
+        };
+        setCachedThemes((prev) => ({ ...prev, [id]: newTheme }));
+      } catch (error) {
+        console.error('Error generating theme from wallpaper:', error);
+      }
+    };
 
   return (
     <ThemeContext.Provider
@@ -142,14 +175,24 @@ export const useTheme = () => {
   return context;
 };
 
-// THIS FUNCTION IS NOT WORKING YET
-async function extractColorsFromImage(_imgUrl: string): Promise<ThemeColours> {
-  return {
-    primary: '#f9e2af',
-    surface: '#181825',
-    onSurface: '#bac2de',
-    background: '#11111b',
-    secondary: '#fab387',
-    borders: '#0000',
-  };
+/** True when a wallpaper value is an inline CSS gradient rather than a URL. */
+function isCssGradient(wallpaperUrl: string): boolean {
+  const trimmed = wallpaperUrl.trim();
+  return (
+    trimmed.startsWith('linear-gradient') ||
+    trimmed.startsWith('radial-gradient') ||
+    trimmed.startsWith('conic-gradient')
+  );
+}
+
+/**
+ * Turn a theme's wallpaper value into a usable `background-image` value.
+ * - A CSS gradient (used by the Default theme) is used verbatim.
+ * - Anything else is treated as an image URL and wrapped in url().
+ */
+function toWallpaperCss(wallpaperUrl: string): string {
+  const trimmed = wallpaperUrl.trim();
+  return isCssGradient(trimmed)
+    ? trimmed
+    : `url("${trimmed}")`;
 }

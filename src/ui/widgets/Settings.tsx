@@ -2,7 +2,7 @@ import { useTheme } from '../../themes';
 import { usePerformance } from '../../system';
 
 export function Settings() {
-  const { currentTheme, themeSet, setTheme } = useTheme();
+  const { currentTheme, cachedThemes, themeSet, setTheme } = useTheme();
   const { mode, setMode } = usePerformance();
 
   return (
@@ -27,31 +27,36 @@ export function Settings() {
             Reduce heavy motion &amp; effects
           </label>
           <p className="setting-hint">
-            Off disables decorative animation to cut resource use.
+            When off, the glassmorphism blur and heavy visuals are disabled.
           </p>
         </fieldset>
 
         <fieldset className="setting-field">
           <legend className="setting-label">Theme</legend>
-          <p className="setting-hint">Active: {currentTheme.name}</p>
+          <p className="setting-hint">
+            Colours are extracted from the wallpaper (ColorThief).
+          </p>
           {themeSet.size > 0 && (
             <ul className="setting-themes">
-              {[...themeSet].map((id) => (
-                <li key={id}>
-                  <button
-                    type="button"
-                    className={
-                      id === currentTheme.id
-                        ? 'theme-button is-active'
-                        : 'theme-button'
-                    }
-                    aria-pressed={id === currentTheme.id}
-                    onClick={() => setTheme(id)}
-                  >
-                    {id}
-                  </button>
-                </li>
-              ))}
+              {[...themeSet].map((id) => {
+                const theme = cachedThemes[id];
+                return (
+                  <li key={id}>
+                    <button
+                      type="button"
+                      className={
+                        id === currentTheme.id
+                          ? 'theme-button is-active'
+                          : 'theme-button'
+                      }
+                      aria-pressed={id === currentTheme.id}
+                      onClick={() => setTheme(id)}
+                    >
+                      {theme?.name ?? id}
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           )}
         </fieldset>
