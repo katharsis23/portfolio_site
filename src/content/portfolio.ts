@@ -129,7 +129,7 @@ export const portfolioEng: PortfolioContent = {
         'Docker',
       ],
       description:
-        'Refactored core legacy architectural components, optimizing DB queries and API response times for production workloads. Implemented new backend modules for real-time sports court booking and automated player scheduling.',
+        'Refactored core legacy architectural components, covered the code with tests making sure everything was worked reliably, changing models in Pydantic Schemes',
     },
     {
       name: 'LeoRent',
@@ -213,7 +213,7 @@ export const portfolioUkr: PortfolioContent = {
   name: 'Данило (Katharsis)',
   role: 'Python Backend Розробник',
   about: [
-    'Результативний Python Backend Розробник із міцною теоретичною базою в Computer Science та практичним досвідом побудови масштабованих, готових до продакшену систем. Спеціалізуюся на розробці високопродуктивних і безпечних RESTful API на FastAPI та Django (DRF), оптимізації реляційних баз даних (PostgreSQL, MySQL) та контейнеризації додатків за допомогою Docker.',
+    'Компетентний Python Backend Розробник із міцною теоретичною базою в Computer Science та практичним досвідом побудови масштабованих, готових до продакшену систем. Спеціалізуюся на розробці високопродуктивних і безпечних RESTful API на FastAPI та Django (DRF), оптимізації реляційних баз даних (PostgreSQL, MySQL) та контейнеризації додатків за допомогою Docker.',
     'Окрім розробки бекенд-архітектури, маю практичний досвід кросплатформенної мобільної розробки на Flutter (Dart), що дозволяє мені безшовно інтегрувати бекенд-сервіси з клієнтською частиною.',
   ],
   skills: [
@@ -266,7 +266,7 @@ export const portfolioUkr: PortfolioContent = {
       bulletPoints: [
         'Розробляв продакшен-фічі та рефакторив легасі-код бекенду для комерційної спортивної платформи (Padel).',
         'Значно підвищив надійність системи завдяки збільшенню покриття коду юніт- та інтеграційними тестами за допомогою Pytest.',
-        'Оптимізував запити до бази даних та час відповіді API, забезпечивши стабільну роботу під продакшен-навантаженням.',
+        'Проводив рефакторинг коду за рахунок зміни Pydantic моделей і відповідної логіки',
       ],
     },
     {

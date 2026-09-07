@@ -81,13 +81,13 @@ export function GitHubWidget() {
               <span className="ws-gh-stat-label">{cell.label}</span>
             </div>
           ))}
-          <button
+          {/* <button
             type="button"
             className="ws-btn ws-btn--ghost ws-gh-retry"
             onClick={reload}
           >
             Refresh
-          </button>
+          </button> */}
         </div>
       )}
     </section>

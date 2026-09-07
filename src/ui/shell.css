@@ -391,3 +391,58 @@ html[data-performance-mode='on'] .ws-card {
     grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
   }
 }
+
+/*
+ * Phone (narrow / touch-first): collapse the desktop "windows scroll inside
+ * their tiles" metaphor into ONE page-level vertical scroll (docs/AGENTS.md
+ * §2.5, docs/CONCEPT.md §7 — normal vertical scrolling is sacred).
+ *
+ * The tiled hero window and each in-flow sidebar window (Settings / Player /
+ * terminal) simply grow to their content height instead of carving out their
+ * own internal scroll regions, so nothing scrolls inside a nested box next to
+ * the page — the whole document is the single scroller.
+ *
+ * This deliberately targets only the permanently-laid-out regions
+ * (`hero-window`, `app-sidebar`) and NOT the modal `.widgets-layer` bottom
+ * sheets, which stay bounded panels that scroll on their own surface.
+ */
+@media (max-width: 640px), (pointer: coarse) and (max-width: 820px) {
+  /* Workspace window: no internal scroll box, let the hero flow. */
+  .hero-window-body {
+    overflow: visible;
+    max-height: none;
+    overscroll-behavior: auto;
+  }
+
+  /* In-flow sidebar windows grow naturally instead of being scroll clutches. */
+  .app-sidebar .widget,
+  .app-sidebar .window {
+    overflow: visible;
+    min-height: 0;
+    height: auto;
+    flex: none;
+    max-height: none;
+  }
+
+  /* The terminal sheds its big fixed sidebar slab + highlighted glow and just
+     reads as a normal flowing window beside the rest of the page. */
+  .app-sidebar .widget[data-widget='terminal'] {
+    min-height: 0;
+    border-color: var(--borders);
+    box-shadow: none;
+  }
+
+  /* Their bodies + the terminal line region lose overflow:auto so content is
+     never trapped in its own scroll box alongside the page scroll. */
+  .app-sidebar .widget .widget-body,
+  .app-sidebar .window .widget-body,
+  .app-sidebar .widget-body,
+  .app-sidebar .term-lines {
+    overflow: visible;
+    max-height: none;
+    height: auto;
+    flex: none;
+    min-height: 0;
+    overscroll-behavior: auto;
+  }
+}
