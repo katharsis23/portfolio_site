@@ -15,6 +15,22 @@ export function Projects({ items }: { items: Project[] }) {
               <span className="ws-meta">{project.tagline}</span>
             </header>
             <p className="ws-paragraph">{project.description}</p>
+            {project.links && project.links.length > 0 && (
+              <ul className="ws-project-links" aria-label="Links">
+                {project.links.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      className="ws-project-link"
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {link.label} ↗
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
             <ul className="ws-taglist" aria-label="Tech stack">
               {project.stack.map((tech) => (
                 <li key={tech} className="ws-tag">

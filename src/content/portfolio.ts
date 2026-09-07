@@ -145,6 +145,13 @@ export const portfolioEng: PortfolioContent = {
       ],
       description:
         'Engineered a backend ecosystem for a property rental platform featuring an integrated AI assistant to automate property search and listing matches. Built scalable RESTful API endpoints for managing listings, user inquiries, and dynamic filtering.',
+      links: [
+        {
+          label: 'Backend Repository',
+          url: 'https://github.com/katharsis23/LeoRent_Backend',
+        },
+        { label: 'Live Demo', url: 'https://leorent.netlify.app/' },
+      ],
     },
     {
       name: 'Zettelkasten Note & Task Ecosystem',
@@ -159,6 +166,16 @@ export const portfolioEng: PortfolioContent = {
       ],
       description:
         'Designed a cross-platform, local-first note-taking and task management engine following the Zettelkasten methodology. Implemented data synchronization algorithms for seamless cross-device state management and offline-first persistence with cloud backup.',
+      links: [
+        {
+          label: 'Backend Repository',
+          url: 'https://github.com/katharsis23/fastapi_todo_app',
+        },
+        {
+          label: 'Frontend Repository',
+          url: 'https://github.com/katharsis23/zettelkasten_frontend',
+        },
+      ],
     },
     {
       name: 'Notes AI Manager',
@@ -172,6 +189,12 @@ export const portfolioEng: PortfolioContent = {
       ],
       description:
         'Built an automated note processing system leveraging local Ollama LLM models to parse, summarize, and auto-generate structured .md study guides. Implemented a dynamic knowledge-graph generator for interactive visual mind-maps across notes.',
+      links: [
+        {
+          label: 'GitHub Repository',
+          url: 'https://github.com/katharsis23/Notes_AI_manager',
+        },
+      ],
     },
     {
       name: 'sddm_dots',
@@ -179,6 +202,12 @@ export const portfolioEng: PortfolioContent = {
       stack: ['Linux', 'QML', 'Shell Scripting', 'Custom Unix Configuration'],
       description:
         'Designed a custom animated theme and dotfiles configuration for the SDDM (Simple Desktop Display Manager). Demonstrates advanced Linux CLI fluency, system-level customization, and UI scripting skills.',
+      links: [
+        {
+          label: 'Github Repository',
+          url: 'https://github.com/katharsis23/sddm_dots.git',
+        },
+      ],
     },
   ],
   education: [
@@ -293,7 +322,7 @@ export const portfolioUkr: PortfolioContent = {
         'Docker',
       ],
       description:
-        'Провів рефакторинг ключових легасі-компонентів, оптимізував DB-запити та швидкість роботи API для продакшену. Реалізував нові бекенд-модулі для бронювання кортів у реальному часі та автоматичного розкладу ігор.',
+        'Провів рефакторинг ключових легасі-компонентів, покрив код тестами, забезпечивши надійну роботу системи, та змінив моделі у Pydantic схемах.',
     },
     {
       name: 'LeoRent',
@@ -309,6 +338,13 @@ export const portfolioUkr: PortfolioContent = {
       ],
       description:
         'Спроектував бекенд-екосистему для платформи оренди нерухомості з інтегрованим AI-асистентом для автоматизації пошуку та підбору житла. Побудував масштабовані RESTful API ендпоінти для управління оголошеннями, запитами користувачів та динамічної фільтрації.',
+      links: [
+        {
+          label: 'Backend Repository',
+          url: 'https://github.com/katharsis23/LeoRent_Backend',
+        },
+        { label: 'Live Demo', url: 'https://leorent.netlify.app/' },
+      ],
     },
     {
       name: 'Zettelkasten Note & Task Ecosystem',
@@ -323,6 +359,16 @@ export const portfolioUkr: PortfolioContent = {
       ],
       description:
         'Спроектував кросплатформений рушій для нотаток і задач за методом Zettelkasten за принципом "local-first, cloud-second". Реалізував алгоритми синхронізації даних для безшовного управління станом між пристроями та офлайн-персистентністю з хмарним бекапом.',
+      links: [
+        {
+          label: 'Backend Repository',
+          url: 'https://github.com/katharsis23/fastapi_todo_app',
+        },
+        {
+          label: 'Frontend Repository',
+          url: 'https://github.com/katharsis23/zettelkasten_frontend',
+        },
+      ],
     },
     {
       name: 'Notes AI Manager',
@@ -336,6 +382,12 @@ export const portfolioUkr: PortfolioContent = {
       ],
       description:
         'Створив автоматизовану систему обробки нотаток на базі локальних моделей Ollama для аналізу, узагальнення та автогенерації структурованих .md конспектів. Реалізував динамічний генератор графа знань для інтерактивних візуальних mind-maps.',
+      links: [
+        {
+          label: 'GitHub Repository',
+          url: 'https://github.com/katharsis23/Notes_AI_manager',
+        },
+      ],
     },
     {
       name: 'sddm_dots',
@@ -343,6 +395,12 @@ export const portfolioUkr: PortfolioContent = {
       stack: ['Linux', 'QML', 'Shell Scripting', 'Custom Unix Configuration'],
       description:
         'Створив кастомну анімовану тему та конфігурацію dotfiles для дисплейного менеджера SDDM. Проєкт демонструє впевнене володіння Linux CLI, системним кастомізуванням та UI-скриптами.',
+      links: [
+        {
+          label: 'GitHub Repository',
+          url: 'https://github.com/katharsis23/sddm_dots.git',
+        },
+      ],
     },
   ],
   education: [
