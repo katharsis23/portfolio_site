@@ -47,7 +47,7 @@ export function About({
         <a
           className="ws-btn ws-btn--ghost"
           href={CV_URL}
-          download="Danylo_CV.pdf"
+          download="Danylo_Herchakivskiy_CV.docx"
         >
           {t('downloadCv')}
         </a>
