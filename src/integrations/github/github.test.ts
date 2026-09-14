@@ -27,7 +27,7 @@ describe('GitHub source URLs', () => {
   });
 
   it('points the CV download at the static asset in public/', () => {
-    expect(CV_URL).toBe('/Danylo.pdf');
+    expect(CV_URL).toBe('/Danylo_Herchakivskiy_CV.docx');
   });
 });
 

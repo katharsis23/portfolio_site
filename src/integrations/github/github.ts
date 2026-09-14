@@ -30,7 +30,7 @@ export const GITHUB_CHART_URL = `https://ghchart.rshah.org/${GITHUB_USERNAME}`;
 export const GITHUB_HTML_URL = `https://github.com/${GITHUB_USERNAME}`;
 
 /** Relative link to the downloadable CV asset in /public. */
-export const CV_URL = '/Danylo.pdf';
+export const CV_URL = '/Danylo_Herchakivskiy_CV.docx';
 
 function assertOk(res: Response): Response {
   if (!res.ok) {
