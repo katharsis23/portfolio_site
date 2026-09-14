@@ -102,7 +102,7 @@ export const portfolioEng: PortfolioContent = {
       bulletPoints: [
         'Engineered production features and refactored core backend legacy code for a commercial Padel sports platform.',
         'Significantly improved system reliability by increasing unit and integration test coverage with Pytest.',
-        'Optimized database queries and API response times, ensuring smooth execution across production workloads.',
+        'Refactored Pydantic Models and changed appropriate business logic',
       ],
     },
     {
@@ -120,14 +120,7 @@ export const portfolioEng: PortfolioContent = {
     {
       name: 'Padel Sports Platform',
       tagline: 'Commercial Project',
-      stack: [
-        'Python',
-        'Django DRF',
-        'FastAPI',
-        'PostgreSQL',
-        'Pytest',
-        'Docker',
-      ],
+      stack: ['Python', 'Django DRF', 'FastAPI', 'MongoDB', 'Pytest', 'Docker'],
       description:
         'Refactored core legacy architectural components, covered the code with tests making sure everything was worked reliably, changing models in Pydantic Schemes',
     },
